@@ -19,7 +19,70 @@ session_set_cookie_params([
     'samesite' => 'Lax',
 ]);
 
+function getAdminAuthSecret() {
+    return getenv('ADMIN_AUTH_SECRET') ?: 'AiSolutionAdminSecret2026!';
+}
+
+function makeAdminAuthCookieValue(string $username, int $expires): string {
+    $payload = json_encode(['user' => $username, 'exp' => $expires]);
+    $hash = hash_hmac('sha256', $payload, getAdminAuthSecret());
+    return base64_encode($payload) . '.' . $hash;
+}
+
+function validateAdminAuthCookie(string $cookieValue) {
+    $parts = explode('.', $cookieValue, 2);
+    if (count($parts) !== 2) {
+        return false;
+    }
+
+    $payload = base64_decode($parts[0], true);
+    if ($payload === false) {
+        return false;
+    }
+
+    $expected = hash_hmac('sha256', $payload, getAdminAuthSecret());
+    if (!hash_equals($expected, $parts[1])) {
+        return false;
+    }
+
+    $data = json_decode($payload, true);
+    if (!is_array($data) || empty($data['user']) || empty($data['exp'])) {
+        return false;
+    }
+
+    if ($data['exp'] < time()) {
+        return false;
+    }
+
+    return $data['user'];
+}
+
+function setAdminAuthCookie(string $username, bool $secure) {
+    $expires = time() + 3600;
+    $value = makeAdminAuthCookieValue($username, $expires);
+    setcookie('admin_auth', $value, [
+        'expires' => $expires,
+        'path' => '/',
+        'secure' => $secure,
+        'httponly' => true,
+        'samesite' => 'Lax',
+    ]);
+}
+
 session_start();
+
+if ((!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) && !empty($_COOKIE['admin_auth'])) {
+    $user = validateAdminAuthCookie($_COOKIE['admin_auth']);
+    if ($user !== false) {
+        session_regenerate_id(true);
+        $_SESSION['admin_logged_in'] = true;
+        $_SESSION['admin_user'] = $user;
+        $_SESSION['admin_id'] = 1;
+        $_SESSION['db_offline'] = true;
+        header("Location: admin-dashboard.php");
+        exit;
+    }
+}
 
 // Already logged in — redirect to dashboard
 if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) {
@@ -55,6 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $_SESSION['admin_user'] = $username;
                     $_SESSION['admin_id'] = $admin_id;
                     $_SESSION['db_offline'] = false;
+                    setAdminAuthCookie($username, $secure);
                     
                     // Clear output buffer and redirect
                     if (ob_get_level()) {

@@ -21,7 +21,50 @@ session_set_cookie_params([
     'samesite' => 'Lax',
 ]);
 
+function getAdminAuthSecret() {
+    return getenv('ADMIN_AUTH_SECRET') ?: 'AiSolutionAdminSecret2026!';
+}
+
+function validateAdminAuthCookie(string $cookieValue) {
+    $parts = explode('.', $cookieValue, 2);
+    if (count($parts) !== 2) {
+        return false;
+    }
+
+    $payload = base64_decode($parts[0], true);
+    if ($payload === false) {
+        return false;
+    }
+
+    $expected = hash_hmac('sha256', $payload, getAdminAuthSecret());
+    if (!hash_equals($expected, $parts[1])) {
+        return false;
+    }
+
+    $data = json_decode($payload, true);
+    if (!is_array($data) || empty($data['user']) || empty($data['exp'])) {
+        return false;
+    }
+
+    if ($data['exp'] < time()) {
+        return false;
+    }
+
+    return $data['user'];
+}
+
 session_start();
+
+if ((!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) && !empty($_COOKIE['admin_auth'])) {
+    $user = validateAdminAuthCookie($_COOKIE['admin_auth']);
+    if ($user !== false) {
+        session_regenerate_id(true);
+        $_SESSION['admin_logged_in'] = true;
+        $_SESSION['admin_user'] = $user;
+        $_SESSION['admin_id'] = 1;
+        $_SESSION['db_offline'] = true;
+    }
+}
 
 if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
     if (isset($_SERVER['HTTP_X_REQUESTED_WITH'])) {
@@ -40,12 +83,13 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
         $p = session_get_cookie_params();
         setcookie(session_name(), '', time()-42000, $p["path"], $p["domain"], $p["secure"], $p["httponly"]);
     }
-    session_destroy();
-    header("Location: admin-login.php");
-    exit;
-}
-
-require_once __DIR__ . '/db_connect.php';
+    setcookie('admin_auth', '', [
+        'expires' => time() - 3600,
+        'path' => '/',
+        'secure' => $secure,
+        'httponly' => true,
+        'samesite' => 'Lax',
+    ]);
 
 // ─── AJAX Action Handlers ─────────────────────────────────────────────────────
 $ajax_action = isset($_POST['ajax_action']) ? $_POST['ajax_action'] : (isset($_GET['ajax_action']) ? $_GET['ajax_action'] : '');
