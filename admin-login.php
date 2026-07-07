@@ -4,9 +4,21 @@
  * Standalone admin login page. Redirects to admin-dashboard.php on success.
  */
 
-ini_set('session.cookie_httponly', 1);
-ini_set('session.cookie_secure', 0);
-ini_set('session.use_only_cookies', 1);
+$secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+    || (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && strtolower($_SERVER['HTTP_X_FORWARDED_PROTO']) === 'https');
+
+if (is_writable(sys_get_temp_dir())) {
+    session_save_path(sys_get_temp_dir());
+}
+
+session_set_cookie_params([
+    'lifetime' => 0,
+    'path' => '/',
+    'secure' => $secure,
+    'httponly' => true,
+    'samesite' => 'Lax',
+]);
+
 session_start();
 
 // Already logged in — redirect to dashboard

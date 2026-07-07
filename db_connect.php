@@ -6,7 +6,14 @@
  * Connects via PDO and sets up tables & seeds initial data if database is fresh.
  */
 
-$db_file = __DIR__ . '/ai_solution_db.sqlite';
+$default_db_file = __DIR__ . '/ai_solution_db.sqlite';
+$temp_db_file = sys_get_temp_dir() . '/ai_solution_db.sqlite';
+
+$db_file = $default_db_file;
+
+if ((!file_exists($default_db_file) || !is_writable(dirname($default_db_file))) && is_writable(sys_get_temp_dir())) {
+    $db_file = $temp_db_file;
+}
 
 try {
     // Establish PDO SQLite Connection
@@ -568,6 +575,13 @@ try {
 
 } catch (PDOException $e) {
     error_log("Database initialization error: " . $e->getMessage());
+    if (php_sapi_name() !== 'cli') {
+        echo '<div style="padding:24px;background:#111;color:#fff;font-family:Arial,sans-serif;">';
+        echo '<h1>Database Error</h1>';
+        echo '<p>' . htmlspecialchars($e->getMessage()) . '</p>';
+        echo '</div>';
+        exit;
+    }
     die("Database Error: " . $e->getMessage());
 }
 
