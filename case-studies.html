@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Read case studies of how Global Logistics Corp, FinTech Innovations, and HealthTech UK successfully scaled B2B AI integrations with AI-Solution.">
+    <title>Case Studies & Success Stories | AI-Solution</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Main Style sheet -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        .cases-hero {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+            padding: 150px 0 70px;
+            position: relative;
+            overflow: hidden;
+        }
+        .cases-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 20% 40%, rgba(0,240,255,0.04) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 60%, rgba(130,87,229,0.06) 0%, transparent 50%);
+        }
+        .cases-hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 40%, var(--accent-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .case-details-card {
+            background: #ffffff;
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.04);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            margin-bottom: 4rem;
+        }
+        .case-details-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+            border-color: rgba(0,240,255,0.12);
+        }
+        .metric-badge {
+            background: rgba(0,240,255,0.08);
+            border: 1px solid rgba(0,240,255,0.15);
+            color: var(--accent-blue);
+            font-weight: 700;
+            padding: 8px 16px;
+            border-radius: 12px;
+            display: inline-block;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+        .quote-box {
+            background: rgba(130,87,229,0.03);
+            border-left: 4px solid var(--accent-purple);
+            padding: 15px 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 1.5rem 0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Main Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top" role="navigation" aria-label="Main Navigation">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-1 me-2" style="color: var(--accent-blue);"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                AI-Solution
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="case-studies.html">Case Studies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="news.html">News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="events.html">Events</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <a class="nav-link btn btn-sm btn-outline-accent px-3 py-1" href="contact.html">Contact Us</a>
+                    </li>
+                    <!-- Accessibility settings -->
+                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0 d-flex gap-1 align-items-center accessibility-controls">
+                        <button id="contrastBtn" class="btn btn-xs btn-outline-accent rounded-pill px-2.5 py-1 text-xs" aria-label="Toggle Contrast Mode" style="font-size: 0.75rem;">Contrast</button>
+                        <button id="textDecBtn" class="btn btn-xs btn-outline-light rounded-circle text-xs" style="width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem;" aria-label="Decrease Text Size">-</button>
+                        <button id="textResetBtn" class="btn btn-xs btn-outline-light rounded-circle text-xs" style="width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem;" aria-label="Reset Text Size"><i class="fas fa-sync-alt" style="font-size: 0.65rem;"></i></button>
+                        <button id="textIncBtn" class="btn btn-xs btn-outline-light rounded-circle text-xs" style="width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem;" aria-label="Increase Text Size">+</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <!-- Case Studies Hero -->
+    <header class="cases-hero inner-hero">
+        <div class="hero-bg-blobs">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+        </div>
+        <div class="container position-relative text-center">
+            <div class="hero-badge mb-4 d-inline-flex"><span class="badge-dot"></span><span>B2B Deployment Analysis</span></div>
+            <h1 class="display-4 fw-bold text-white mb-4">Success Stories &amp; Case Studies</h1>
+            <p class="lead text-light opacity-75 mb-0" style="max-width: 620px; margin: 0 auto;">Read how leading global corporations leverage AI-Solution platforms to optimize workspace efficiency, automate compliance checks, and achieve measurable ROI.</p>
+        </div>
+    </header>
+
+    <!-- Case Studies List -->
+    <section class="bg-light text-dark py-5">
+        <div class="container">
+            
+            <!-- Case Study 1 -->
+            <div class="case-details-card">
+                <div class="row g-0 align-items-center">
+                    <div class="col-lg-6">
+                        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=2070&auto=format&fit=crop" class="img-fluid w-100" alt="Global Logistics Corp" style="max-height: 480px; object-fit: cover;">
+                    </div>
+                    <div class="col-lg-6 p-4 p-md-5">
+                        <span class="case-tag mb-3">Case Study #01</span>
+                        <h2 class="fw-bold mb-3 text-dark" style="font-family: 'Outfit', sans-serif;">Global Logistics Corp</h2>
+                        <p class="text-muted mb-4">We deployed a custom virtual assistant deeply integrated with Microsoft 365 to handle internal IT and HR inquiries for over 10,000 employees globally. This project automated standard helpdesk queues and resolved repetitive credentials/configuration requests around the clock.</p>
+                        
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <div class="metric-badge"><i class="fas fa-chart-line me-1"></i> 45% IT Helpdesk Ticket Reduction</div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="metric-badge"><i class="fas fa-history me-1"></i> 24/7 Availability Setup</div>
+                            </div>
+                        </div>
+
+                        <ul class="list-unstyled text-muted mb-4">
+                            <li class="mb-2"><span class="check-icon">✓</span> Integrates securely with local SharePoint and M365 accounts</li>
+                            <li class="mb-2"><span class="check-icon">✓</span> Pilot program deployed in 30 days</li>
+                            <li class="mb-2"><span class="check-icon">✓</span> Return on Investment (ROI) achieved in 4 months</li>
+                        </ul>
+
+                        <div class="quote-box">
+                            <p class="mb-1 text-dark font-italic">"The deployment of Nexus Assist Pro was seamless. The automated semantic telemetry alerts resolved standard requests instantly, saving hundreds of engineering hours."</p>
+                            <cite class="small text-muted">— Sarah Jenkins, CTO at Global Logistics Corp</cite>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case Study 2 -->
+            <div class="case-details-card">
+                <div class="row g-0 align-items-center flex-lg-row-reverse">
+                    <div class="col-lg-6">
+                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop" class="img-fluid w-100" alt="FinTech Innovations" style="max-height: 480px; object-fit: cover;">
+                    </div>
+                    <div class="col-lg-6 p-4 p-md-5">
+                        <span class="case-tag mb-3">Case Study #02</span>
+                        <h2 class="fw-bold mb-3 text-dark" style="font-family: 'Outfit', sans-serif;">FinTech Innovations Ltd</h2>
+                        <p class="text-muted mb-4">Using our LogicBuilder platform, FinTech Innovations rapidly prototyped and deployed a secure, compliant onboarding flow for new hires, connecting seamlessly with their highly restricted internal SQL networks.</p>
+                        
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <div class="metric-badge"><i class="fas fa-shield-alt me-1"></i> 100% Security Audits Compliant</div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="metric-badge"><i class="fas fa-bolt me-1"></i> Onboarding Time Cut in Half</div>
+                            </div>
+                        </div>
+
+                        <ul class="list-unstyled text-muted mb-4">
+                            <li class="mb-2"><span class="check-icon">✓</span> Zero-code reasoning canvas utilized for rapid deployment</li>
+                            <li class="mb-2"><span class="check-icon">✓</span> Deployed in secure sandboxed Kubernetes cluster</li>
+                            <li class="mb-2"><span class="check-icon">✓</span> Clean API data synchronization with legacy database</li>
+                        </ul>
+
+                        <div class="quote-box">
+                            <p class="mb-1 text-dark font-italic">"LogicBuilder allowed our small IT team to act like a massive development department. We deployed 5 custom AI workflows in under a month."</p>
+                            <cite class="small text-muted">— David Chen, Director of IT at FinTech Innovations</cite>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case Study 3 (New) -->
+            <div class="case-details-card">
+                <div class="row g-0 align-items-center">
+                    <div class="col-lg-6">
+                        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=600" class="img-fluid w-100" alt="HealthTech UK" style="max-height: 480px; object-fit: cover;">
+                    </div>
+                    <div class="col-lg-6 p-4 p-md-5">
+                        <span class="case-tag mb-3">Case Study #03</span>
+                        <h2 class="fw-bold mb-3 text-dark" style="font-family: 'Outfit', sans-serif;">HealthTech UK</h2>
+                        <p class="text-muted mb-4">We integrated ComplianceBot AI to automate policy check logs across all health databases. The software continuously audit user logins and access directories to ensure compliance with strict B2B healthcare standards.</p>
+                        
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <div class="metric-badge"><i class="fas fa-lock me-1"></i> HIPAA &amp; GDPR Compliant</div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="metric-badge"><i class="fas fa-search me-1"></i> Anomaly Alerts in 24 Hours</div>
+                            </div>
+                        </div>
+
+                        <ul class="list-unstyled text-muted mb-4">
+                            <li class="mb-2"><span class="check-icon">✓</span> Identified directory access violations in real-time</li>
+                            <li class="mb-2"><span class="check-icon">✓</span> Automated ISO 27001 PDF report compilation</li>
+                            <li class="mb-2"><span class="check-icon">✓</span> Zero performance lag on high-throughput database networks</li>
+                        </ul>
+
+                        <div class="quote-box">
+                            <p class="mb-1 text-dark font-italic">"The automated compliance checking saves our security team about 20 hours per week of manual logs verification. An absolute lifesaver."</p>
+                            <cite class="small text-muted">— Elena Rodriguez, VP of Operations at HealthTech UK</cite>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="cta-banner bg-primary-dark">
+        <div class="container text-center">
+            <h2 class="text-white mb-3" style="font-family:'Outfit',sans-serif;">Ready to Scale Your Enterprise Workflows?</h2>
+            <p class="text-light opacity-75 mb-4 fs-5">Join over 500+ enterprise clients already deploying AI-Solution products.</p>
+            <a href="contact.html" class="btn btn-accent btn-lg px-5 py-3 rounded-pill me-3">Contact Us</a>
+            <a href="products.html" class="btn btn-outline-light btn-lg px-5 py-3 rounded-pill">Browse Products</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-4">
+                    <div class="footer-brand mb-3">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2" class="me-2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                        AI-Solution
+                    </div>
+                    <p class="footer-tagline small">AI-Solution: Empower enterprise workforces with next-generation AI virtual assistants and prototyping solutions.</p>
+                    <div class="social-links mt-3">
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <h6 class="footer-heading">Products</h6>
+                    <ul class="footer-links">
+                        <li><a href="products.html#omnimetrics">OmniMetrics AI</a></li>
+                        <li><a href="products.html#nexus">Nexus Assist Pro</a></li>
+                        <li><a href="products.html#logicbuilder">LogicBuilder 3.0</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <h6 class="footer-heading">Company</h6>
+                    <ul class="footer-links">
+                        <li><a href="case-studies.html">Case Studies</a></li>
+                        <li><a href="news.html">News</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h6 class="footer-heading">Contact</h6>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt me-2" style="color:var(--accent-blue);"></i><a href="https://maps.google.com/?q=Innovation+Hub,+Sunderland+SR1+1PB,+UK" target="_blank" class="text-decoration-none" style="color: rgba(255,255,255,0.75) !important;">Innovation Hub, Sunderland SR1 1PB, UK</a></li>
+                        <li><i class="fas fa-envelope me-2" style="color:var(--accent-blue);"></i>hello@ai-solution.co.uk</li>
+                        <li><i class="fas fa-phone me-2" style="color:var(--accent-blue);"></i>+44 191 000 1234</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="footer-divider">
+            <div class="row align-items-center">
+                <div class="col-md-4 text-center text-md-start text-muted small">&copy; 2024 AI-Solution Ltd. All rights reserved.</div>
+                <div class="col-md-4 text-center text-muted small py-2 py-md-0">
+                    <span class="text-muted">Staff Access:</span>
+                    <a href="admin-login.php" class="text-decoration-none text-muted small ms-1" style="color:var(--accent-blue) !important; font-weight:600;"><i class="fas fa-lock me-1"></i>Portal Login</a>
+                </div>
+                <div class="col-md-4 text-center text-md-end">
+                    <a href="#" class="text-muted text-decoration-none me-3 small">Privacy Policy</a>
+                    <a href="#" class="text-muted text-decoration-none small">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Chatbot -->
+    <div class="floating-chatbot">
+        <div class="chatbot-tooltip">Need help? Chat with AI-Assistant</div>
+        <button class="chatbot-btn" id="chatbotBtn" aria-label="Open Chatbot">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        </button>
+    </div>
+
+    <!-- AI Chatbot Panel -->
+    <div class="chatbot-panel" id="chatbotPanel">
+        <div class="chatbot-header">
+            <div class="chatbot-header-info">
+                <div class="chatbot-status-dot"></div>
+                <span class="fw-bold text-white" style="font-size: 0.95rem;">AI Solutions Assistant</span>
+            </div>
+            <button class="chatbot-close-btn" id="closeChatbot" aria-label="Close Chatbox">&times;</button>
+        </div>
+        <div class="chatbot-history" id="chatbotHistory">
+            <div class="chat-msg bot">Hello! I am your AI assistant. How can I help you today?</div>
+        </div>
+        <div class="chatbot-quick-replies" id="chatbotQuickReplies">
+            <button class="quick-reply-btn" data-reply="How to submit a demo inquiry?">Submit Inquiry</button>
+            <button class="quick-reply-btn" data-reply="What are your pricing plans?">Pricing Plans</button>
+            <button class="quick-reply-btn" data-reply="Where are your office locations?">Offices</button>
+            <button class="quick-reply-btn" data-reply="What case studies do you have?">Case Studies</button>
+        </div>
+        <form class="chatbot-input-form" id="chatbotForm">
+            <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Type a message..." autocomplete="off" required>
+            <button type="submit" class="chatbot-send-btn" aria-label="Send message">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+        </form>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

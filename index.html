@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI-Solution provides cutting-edge AI-powered virtual assistants and prototyping solutions to improve digital employee experience.">
+    <title>AI-Solution | Next-Gen AI Software Solutions</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Main Style sheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Main Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top" role="navigation" aria-label="Main Navigation">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-1 me-2" style="color: var(--accent-blue);"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                AI-Solution
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="case-studies.html">Case Studies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="news.html">News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="events.html">Events</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <a class="nav-link btn btn-sm btn-outline-accent px-3 py-1" href="contact.html">Contact Us</a>
+                    </li>
+                    <!-- Accessibility settings -->
+                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0 d-flex gap-1 align-items-center accessibility-controls">
+                        <button id="contrastBtn" class="btn btn-xs btn-outline-accent rounded-pill px-2.5 py-1 text-xs" aria-label="Toggle Contrast Mode" style="font-size: 0.75rem;">Contrast</button>
+                        <button id="textDecBtn" class="btn btn-xs btn-outline-light rounded-circle text-xs" style="width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem;" aria-label="Decrease Text Size">-</button>
+                        <button id="textResetBtn" class="btn btn-xs btn-outline-light rounded-circle text-xs" style="width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem;" aria-label="Reset Text Size"><i class="fas fa-sync-alt" style="font-size: 0.65rem;"></i></button>
+                        <button id="textIncBtn" class="btn btn-xs btn-outline-light rounded-circle text-xs" style="width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem;" aria-label="Increase Text Size">+</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Introduction -->
+    <header class="hero-section" id="hero">
+        <div class="hero-particles" id="heroParticles"></div>
+        <div class="container position-relative">
+            <div class="row align-items-center">
+                <div class="col-lg-7 col-md-10 hero-text-container">
+                    <div class="hero-badge mb-4">
+                        <span class="badge-dot"></span>
+                        <span>Now live — Nexus Assist Pro 2.0</span>
+                    </div>
+                    <h1 class="display-4 fw-bold mb-4">Empower Your Workforce with Intelligent Virtual Assistants</h1>
+                    <p class="lead mb-5 text-light opacity-75">Transform your digital employee experience with our cutting-edge AI prototyping solutions. Built for enterprise scalability and seamless integration.</p>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <a href="contact.html#demo" class="btn btn-accent btn-lg px-5 py-3 rounded-pill">Get a Demo</a>
+                        <a href="products.html" class="btn btn-outline-light btn-lg px-5 py-3 rounded-pill">View Products</a>
+                    </div>
+                    <div class="hero-stats mt-5 d-flex gap-4 flex-wrap">
+                        <div class="hero-stat">
+                            <div class="stat-num">500+</div>
+                            <div class="stat-label">Enterprise Clients</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="stat-num">45%</div>
+                            <div class="stat-label">Avg. Ticket Reduction</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="stat-num">99.9%</div>
+                            <div class="stat-label">Uptime SLA</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 d-none d-lg-block">
+                    <div class="hero-visual">
+                        <div class="hero-card-float">
+                            <div class="hc-inner">
+                                <div class="hc-icon"><i class="fas fa-robot"></i></div>
+                                <div>
+                                    <div class="hc-title">Nexus Assist Pro</div>
+                                    <div class="hc-sub">Resolving ticket #4821...</div>
+                                </div>
+                                <div class="hc-badge">Live</div>
+                            </div>
+                        </div>
+                        <div class="hero-card-float delay-1">
+                            <div class="hc-inner">
+                                <div class="hc-icon" style="background: rgba(130,87,229,0.15); color: var(--accent-purple);"><i class="fas fa-chart-line"></i></div>
+                                <div>
+                                    <div class="hc-title">OmniMetrics AI</div>
+                                    <div class="hc-sub">Bottleneck identified — IT dept.</div>
+                                </div>
+                                <div class="hc-badge" style="background:rgba(130,87,229,0.15);color:var(--accent-purple);">Alert</div>
+                            </div>
+                        </div>
+                        <div class="hero-card-float delay-2">
+                            <div class="hc-inner">
+                                <div class="hc-icon" style="background: rgba(16,185,129,0.15); color: #10b981;"><i class="fas fa-check-circle"></i></div>
+                                <div>
+                                    <div class="hc-title">LogicBuilder 3.0</div>
+                                    <div class="hc-sub">Workflow deployed successfully</div>
+                                </div>
+                                <div class="hc-badge" style="background:rgba(16,185,129,0.15);color:#10b981;">Done</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <div class="scroll-dot"></div>
+        </div>
+    </header>
+
+    <!-- Trusted By logos -->
+    <section class="trusted-by-section py-4">
+        <div class="container">
+            <p class="text-center text-muted small mb-3 fw-semibold text-uppercase letter-spacing-2">Trusted by leading enterprises</p>
+            <div class="trusted-logos d-flex justify-content-center align-items-center gap-5 flex-wrap">
+                <div class="trusted-logo">Global Logistics Corp</div>
+                <div class="trusted-logo">FinTech Innovations</div>
+                <div class="trusted-logo">HealthTech UK</div>
+                <div class="trusted-logo">DataSync Systems</div>
+                <div class="trusted-logo">CloudOps Ltd</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Highlights (teaser on homepage) -->
+    <section id="solutions" class="bg-light text-dark">
+        <div class="container">
+            <h2 class="section-title">Our Software Solutions</h2>
+            <p class="text-center text-muted mb-5" style="max-width:620px;margin:0 auto 3rem;">Cutting-edge AI tools designed to automate, predict, and streamline your enterprise operations from day one.</p>
+
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card" style="background-color: #FAF8F5 !important; background: #FAF8F5 !important;">
+                        <div class="feature-img-wrap" style="height: 180px; overflow: hidden; border-radius: 12px; margin-bottom: 1.5rem; position: relative;">
+                            <img src="images/dashboard.png" alt="OmniMetrics AI" class="card-img-top" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="feature-icon"><i class="fas fa-brain"></i></div>
+                        <h5 style="color: #000000 !important; font-family: 'Outfit', sans-serif !important; font-weight: 800 !important;">OmniMetrics AI</h5>
+                        <p style="color: #334155 !important; font-weight: 500 !important; opacity: 1 !important; line-height: 1.65 !important;">Advanced predictive analytics that automatically identifies workflow bottlenecks across your enterprise architecture.</p>
+                        <a href="products.html#omnimetrics" class="feature-link" style="color: #1E40AF !important; font-weight: 700 !important;">Learn More <i class="fas fa-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card featured" style="background-color: #FAF8F5 !important; background: #FAF8F5 !important;">
+                        <div class="feature-badge">Most Popular</div>
+                        <div class="feature-img-wrap" style="height: 180px; overflow: hidden; border-radius: 12px; margin-bottom: 1.5rem; position: relative; z-index: 1;">
+                            <img src="images/hero.png" alt="Nexus Assist Pro" class="card-img-top" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="feature-icon"><i class="fas fa-robot"></i></div>
+                        <h5 style="color: #000000 !important; font-family: 'Outfit', sans-serif !important; font-weight: 800 !important;">Nexus Assist Pro</h5>
+                        <p style="color: #334155 !important; font-weight: 500 !important; opacity: 1 !important; line-height: 1.65 !important;">Flagship virtual assistant deeply integrated with M365 and Google Workspace to automate routine employee inquiries.</p>
+                        <a href="products.html#nexus" class="feature-link" style="color: #1E40AF !important; font-weight: 700 !important;">Learn More <i class="fas fa-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card" style="background-color: #FAF8F5 !important; background: #FAF8F5 !important;">
+                        <div class="feature-img-wrap" style="height: 180px; overflow: hidden; border-radius: 12px; margin-bottom: 1.5rem; position: relative;">
+                            <img src="images/workflow.png" alt="LogicBuilder 3.0" class="card-img-top" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="feature-icon"><i class="fas fa-sitemap"></i></div>
+                        <h5 style="color: #000000 !important; font-family: 'Outfit', sans-serif !important; font-weight: 800 !important;">LogicBuilder 3.0</h5>
+                        <p style="color: #334155 !important; font-weight: 500 !important; opacity: 1 !important; line-height: 1.65 !important;">Rapid prototyping solution for IT departments to visually construct and deploy custom AI logic trees.</p>
+                        <a href="products.html#logicbuilder" class="feature-link" style="color: #1E40AF !important; font-weight: 700 !important;">Learn More <i class="fas fa-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <a href="products.html" class="btn btn-accent px-5 py-3 rounded-pill">View All Products</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies Preview Section -->
+    <section id="case-studies" class="bg-primary-dark">
+        <div class="container text-center py-4">
+            <h2 class="section-title text-white">B2B Case Studies &amp; Deployments</h2>
+            <p class="text-white-50 mb-5" style="max-width:620px;margin:0 auto 3rem;">See how we help global logistics, fintech innovators, and healthcare networks deploy robust, compliant AI logic chains.</p>
+            
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-4">
+                    <div class="card card-custom bg-secondary-dark border border-secondary text-white h-100 p-4 text-start" style="background: var(--secondary-dark) !important;">
+                        <span class="case-tag mb-3 align-self-start">Case Study #01</span>
+                        <h4 class="text-white fw-bold mb-3">Global Logistics Corp</h4>
+                        <p class="text-white-50 small mb-4">M365 conversational virtual assistant deployment for 10,000+ staff, automating standard IT/HR support tickets.</p>
+                        <span class="text-accent-blue fw-bold small mt-auto"><i class="fas fa-chart-line me-1"></i> 45% ticket reduction</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-custom bg-secondary-dark border border-secondary text-white h-100 p-4 text-start" style="background: var(--secondary-dark) !important;">
+                        <span class="case-tag mb-3 align-self-start">Case Study #02</span>
+                        <h4 class="text-white fw-bold mb-3">FinTech Innovations</h4>
+                        <p class="text-white-50 small mb-4">Rapid zero-code onboarding workflow configuration using LogicBuilder 3.0 on secure sandboxed SQL databases.</p>
+                        <span class="text-accent-blue fw-bold small mt-auto"><i class="fas fa-bolt me-1"></i> Onboarding time cut in half</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-custom bg-secondary-dark border border-secondary text-white h-100 p-4 text-start" style="background: var(--secondary-dark) !important;">
+                        <span class="case-tag mb-3 align-self-start">Case Study #03</span>
+                        <h4 class="text-white fw-bold mb-3">HealthTech UK</h4>
+                        <p class="text-white-50 small mb-4">ComplianceBot AI integration for real-time security checking and automated ISO 27001 compliance audit trails.</p>
+                        <span class="text-accent-blue fw-bold small mt-auto"><i class="fas fa-lock me-1"></i> 100% HIPAA compliance</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <a href="case-studies.html" class="btn btn-accent btn-lg px-5 py-3 rounded-pill">Read Full Success Stories</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- News & Blog Articles Highlights -->
+    <section id="articles" class="bg-light text-dark">
+        <div class="container">
+            <div class="row align-items-center mb-5">
+                <div class="col-md-8">
+                    <h2 class="fw-bold mb-1" style="font-family:'Outfit',sans-serif;">Latest Articles &amp; Insights</h2>
+                    <p class="text-muted small mb-0">Read announcements and technical deep-dives from our research team.</p>
+                </div>
+                <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                    <a href="news.html" class="btn btn-accent rounded-pill px-4">View All News <i class="fas fa-arrow-right ms-1"></i></a>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card card-custom h-100">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=600" class="card-img-top" alt="Microchip">
+                        <div class="card-body">
+                            <span class="badge bg-primary mb-2">Technology</span>
+                            <h5 class="card-title">The Future of AI in Employee Experience</h5>
+                            <p class="card-text text-muted">Discover how machine learning is predicting employee needs before they arise, revolutionizing HR operations.</p>
+                            <a href="news.html" class="read-article-btn text-decoration-none text-primary fw-semibold small" data-article-id="1">Read Full Article <i class="fas fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-custom h-100">
+                        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=600" class="card-img-top" alt="Presentation">
+                        <div class="card-body">
+                            <span class="badge bg-success mb-2">Company News</span>
+                            <h5 class="card-title">AI-Solution Opens New Sunderland HQ</h5>
+                            <p class="card-text text-muted">We are expanding! Read about our state-of-the-art new headquarters designed to foster collaborative AI development.</p>
+                            <a href="news.html" class="read-article-btn text-decoration-none text-primary fw-semibold small" data-article-id="2">Read Full Article <i class="fas fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Highlights -->
+    <section id="events" class="bg-secondary-dark">
+        <div class="container text-center">
+            <h2 class="section-title text-white">Upcoming Events &amp; Galleries</h2>
+            <p class="text-white-50 mb-5" style="max-width:600px;margin:0 auto 3rem;">Witness our live simulations, join technical webinars, or browse our event photo archives.</p>
+            <div class="row g-4 justify-content-center mb-5" id="upcoming-events-container">
+                <div class="col-md-5">
+                    <div class="card bg-primary-dark border border-secondary text-white h-100 card-custom text-start overflow-hidden" style="background: var(--primary-dark) !important;">
+                        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=600" class="card-img-top" alt="Sunderland Tech Summit 2026">
+                        <div class="card-body p-4 d-flex flex-column h-100">
+                            <span class="badge bg-info text-dark mb-3 align-self-start">Live Summit</span>
+                            <h4 class="text-white fw-bold mb-2">Sunderland Tech Summit 2026</h4>
+                            <p class="text-light opacity-75 small">Join our executive and engineering teams as we present our B2B integration roadmaps live at the Innovation Hub.</p>
+                            <span class="text-accent-blue fw-bold small mt-auto"><i class="far fa-calendar-alt me-1"></i> October 15–16, 2026</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="card bg-primary-dark border border-secondary text-white h-100 card-custom text-start overflow-hidden" style="background: var(--primary-dark) !important;">
+                        <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&w=600" class="card-img-top" alt="Scaling HR Virtual Assistants">
+                        <div class="card-body p-4 d-flex flex-column h-100">
+                            <span class="badge bg-success mb-3 align-self-start">Webinar</span>
+                            <h4 class="text-white fw-bold mb-2">Scaling HR Virtual Assistants</h4>
+                            <p class="text-light opacity-75 small">A technical webinar outlining how to optimize employee workflows and reduce ticket response times by 50%.</p>
+                            <span class="text-accent-blue fw-bold small mt-auto"><i class="far fa-calendar-alt me-1"></i> November 05, 2026</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="events.html" class="btn btn-accent btn-lg px-5 py-3 rounded-pill">View All Events &amp; Galleries</a>
+        </div>
+    </section>
+
+
+
+    <!-- Client Testimonials -->
+    <section id="feedback" class="bg-light text-dark border-top">
+        <div class="container">
+            <h2 class="section-title">Client Feedback</h2>
+            <div class="row mt-5 g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="card card-custom text-center p-4 h-100">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1976&auto=format&fit=crop" class="testimonial-avatar mx-auto" alt="Sarah Jenkins">
+                        <h5 class="card-title fw-bold mb-1">Sarah Jenkins</h5>
+                        <p class="text-muted small mb-3">CTO, Global Logistics Corp</p>
+                        <div class="star-rating mb-3 fs-5">★★★★★</div>
+                        <p class="card-text text-muted font-italic">"The deployment of Nexus Assist Pro was seamless. AI-Solution's team guided us every step of the way, and the results have drastically exceeded our expectations."</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="card card-custom text-center p-4 h-100">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop" class="testimonial-avatar mx-auto" alt="David Chen">
+                        <h5 class="card-title fw-bold mb-1">David Chen</h5>
+                        <p class="text-muted small mb-3">Director of IT, FinTech Innovations</p>
+                        <div class="star-rating mb-3 fs-5">★★★★★</div>
+                        <p class="card-text text-muted font-italic">"LogicBuilder allowed our small IT team to act like a massive development department. We deployed 5 custom AI workflows in under a month."</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0">
+                    <div class="card card-custom text-center p-4 h-100">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop" class="testimonial-avatar mx-auto" alt="Elena Rodriguez">
+                        <h5 class="card-title fw-bold mb-1">Elena Rodriguez</h5>
+                        <p class="text-muted small mb-3">VP of Operations, HealthTech UK</p>
+                        <div class="star-rating mb-3 fs-5">★★★★★</div>
+                        <p class="card-text text-muted font-italic">"The predictive analytics from OmniMetrics pinpointed operational bottlenecks we didn't even know existed. A truly phenomenal piece of software."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="cta-banner bg-primary-dark">
+        <div class="container text-center">
+            <h2 class="text-white mb-3">Ready to Transform Your Workplace?</h2>
+            <p class="text-light opacity-75 mb-4 fs-5">Join 500+ enterprise clients already using AI-Solution products.</p>
+            <a href="contact.html" class="btn btn-accent btn-lg px-5 py-3 rounded-pill me-3">Contact Us</a>
+            <a href="products.html" class="btn btn-outline-light btn-lg px-5 py-3 rounded-pill">Browse Products</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-4">
+                    <div class="footer-brand mb-3">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2" class="me-2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                        AI-Solution
+                    </div>
+                    <p class="footer-tagline small">AI-Solution: Empower enterprise workforces with next-generation AI virtual assistants and prototyping solutions.</p>
+                    <div class="social-links mt-3">
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <h6 class="footer-heading">Products</h6>
+                    <ul class="footer-links">
+                        <li><a href="products.html#omnimetrics">OmniMetrics AI</a></li>
+                        <li><a href="products.html#nexus">Nexus Assist Pro</a></li>
+                        <li><a href="products.html#logicbuilder">LogicBuilder 3.0</a></li>
+                        <li><a href="products.html#legacy">Legacy Products</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <h6 class="footer-heading">Company</h6>
+                    <ul class="footer-links">
+                        <li><a href="case-studies.html">Case Studies</a></li>
+                        <li><a href="index.html#articles">News</a></li>
+                        <li><a href="index.html#events">Events</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h6 class="footer-heading">Contact</h6>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt me-2" style="color:var(--accent-blue);"></i><a href="https://maps.google.com/?q=Innovation+Hub,+Sunderland+SR1+1PB,+UK" target="_blank" class="text-decoration-none" style="color: rgba(255,255,255,0.75) !important;">Innovation Hub, Sunderland SR1 1PB, UK</a></li>
+                        <li><i class="fas fa-envelope me-2" style="color:var(--accent-blue);"></i>hello@ai-solution.co.uk</li>
+                        <li><i class="fas fa-phone me-2" style="color:var(--accent-blue);"></i>+44 191 000 1234</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="footer-divider">
+            <div class="row align-items-center">
+                <div class="col-md-4 text-center text-md-start text-muted small">
+                    &copy; 2024 AI-Solution Ltd. All rights reserved.
+                </div>
+                <div class="col-md-4 text-center text-muted small py-2 py-md-0">
+                    <span class="text-muted">Staff Access:</span>
+                    <a href="admin-login.php" class="text-decoration-none text-muted small ms-1" style="color:var(--accent-blue) !important; font-weight:600;"><i class="fas fa-lock me-1"></i>Portal Login</a>
+                </div>
+                <div class="col-md-4 text-center text-md-end">
+                    <a href="#" class="text-muted text-decoration-none me-3 small">Privacy Policy</a>
+                    <a href="#" class="text-muted text-decoration-none small">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Chatbot -->
+    <div class="floating-chatbot">
+        <div class="chatbot-tooltip">Need help? Chat with AI-Assistant</div>
+        <button class="chatbot-btn" id="chatbotBtn" aria-label="Open Chatbot">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        </button>
+    </div>
+
+    <!-- AI Chatbot Panel -->
+    <div class="chatbot-panel" id="chatbotPanel">
+        <div class="chatbot-header">
+            <div class="chatbot-header-info">
+                <div class="chatbot-status-dot"></div>
+                <span class="fw-bold text-white" style="font-size: 0.95rem;">AI Solutions Assistant</span>
+            </div>
+            <button class="chatbot-close-btn" id="closeChatbot" aria-label="Close Chatbox">&times;</button>
+        </div>
+        <div class="chatbot-history" id="chatbotHistory">
+            <div class="chat-msg bot">Hello! I am your AI assistant. How can I help you today?</div>
+        </div>
+        <div class="chatbot-quick-replies" id="chatbotQuickReplies">
+            <button class="quick-reply-btn" data-reply="How to submit a demo inquiry?">Submit Inquiry</button>
+            <button class="quick-reply-btn" data-reply="What are your pricing plans?">Pricing Plans</button>
+            <button class="quick-reply-btn" data-reply="Where are your office locations?">Offices</button>
+            <button class="quick-reply-btn" data-reply="What case studies do you have?">Case Studies</button>
+        </div>
+        <form class="chatbot-input-form" id="chatbotForm">
+            <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Type a message..." autocomplete="off" required>
+            <button type="submit" class="chatbot-send-btn" aria-label="Send message">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+        </form>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast-container">
+        <div class="toast-custom" id="submitToast">
+            <span class="toast-icon">✓</span>
+            <div>
+                <strong class="d-block" style="color: var(--accent-blue);">Inquiry Received</strong>
+                <span class="small text-light opacity-75">Thank you! Our solutions team will contact you shortly.</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Article Detail Modal -->
+    <div class="modal fade article-modal" id="articleDetailModal" tabindex="-1" aria-labelledby="modalArticleTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold text-white" id="modalArticleTitle">Article Title</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4" style="max-height: 70vh; overflow-y: auto;">
+                    <span class="badge bg-primary mb-2" id="modalArticleCategory">Category</span>
+                    <div class="text-muted small mb-3" id="modalArticleDate">Date</div>
+                    <img src="" class="img-fluid rounded-4 mb-4" id="modalArticleImg" alt="Article image" style="width: 100%; max-height: 350px; object-fit: cover;">
+                    <div class="article-content text-white-50" id="modalArticleBody" style="line-height: 1.8; font-size: 0.95rem;">
+                        <!-- Content will load dynamically -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-light rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse all AI-Solution software products including OmniMetrics AI, Nexus Assist Pro, and LogicBuilder 3.0 — enterprise-grade AI tools.">
+    <title>Products | AI-Solution Software</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Products page specific premium styles */
+        .products-hero {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+            padding: 140px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        .products-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(0,240,255,0.04) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 30%, rgba(130,87,229,0.06) 0%, transparent 50%);
+        }
+        .product-full-card {
+            background: #111827;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-full-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 45px rgba(0,240,255,0.15);
+            border-color: rgba(0,240,255,0.3);
+        }
+        .product-img-wrap {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+            background: var(--primary-dark);
+        }
+        .product-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .product-full-card:hover .product-img-wrap img {
+            transform: scale(1.04);
+        }
+        .product-badge-overlay {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, var(--accent-blue), #00b4d8);
+            color: #070b19;
+            font-weight: 800;
+            font-size: 0.7rem;
+            padding: 5px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+            z-index: 2;
+        }
+        .pkg-badge {
+            background: rgba(14, 165, 233, 0.1);
+            border: 1px solid rgba(14, 165, 233, 0.25);
+            color: var(--accent-blue);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+        .review-card-verified {
+            border-left: 4px solid var(--accent-green) !important;
+        }
+        .verified-badge {
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            color: #10b981;
+            font-size: 0.68rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .detail-tab-btn {
+            font-weight: 700;
+            font-size: 0.9rem;
+            padding: 10px 18px;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            background: transparent;
+            color: rgba(255,255,255,0.6);
+            transition: all 0.2s;
+        }
+        .detail-tab-btn.active {
+            background: rgba(0, 240, 255, 0.08);
+            border-color: rgba(0, 240, 255, 0.2);
+            color: var(--accent-blue);
+        }
+        .price-card-modal {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 1.2rem;
+            text-align: center;
+            transition: border-color 0.2s;
+        }
+        .price-card-modal:hover {
+            border-color: var(--accent-blue);
+        }
+        /* Sort & Filter Bar Styling */
+        .filter-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .filter-chip {
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            color: #475569;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .filter-chip:hover {
+            background: #e2e8f0;
+            color: var(--primary-dark);
+        }
+        .filter-chip.active {
+            background: linear-gradient(135deg, var(--accent-blue) 0%, #00b4d8 100%);
+            border-color: transparent;
+            color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 240, 255, 0.15);
+        }
+        /* Direct, high-contrast typography overrides for cream-white product cards */
+        .product-full-card {
+            background-color: #FAF8F5 !important;
+            background: #FAF8F5 !important;
+        }
+        .product-title {
+            color: #000000 !important;
+            font-family: 'Outfit', sans-serif !important;
+            font-weight: 800 !important;
+        }
+        .product-desc {
+            color: #334155 !important;
+            font-size: 0.85rem !important;
+            line-height: 1.6 !important;
+            opacity: 1 !important;
+        }
+        .product-reviews-count {
+            color: #334155 !important;
+            opacity: 1 !important;
+            font-weight: 600 !important;
+        }
+        .product-full-card .star-rating {
+            color: #FFB800 !important;
+        }
+        .product-full-card .btn-outline-accent {
+            border: 2px solid #1E40AF !important;
+            color: #1E40AF !important;
+            background: transparent !important;
+            font-weight: 700 !important;
+        }
+        .product-full-card .btn-outline-accent:hover {
+            background: #1E40AF !important;
+            color: #FFFFFF !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mb-1 me-2" style="color:var(--accent-blue);"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                AI-Solution
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="products.html">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="case-studies.html">Case Studies</a></li>
+                    <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+                    <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
+                    <li class="nav-item ms-lg-2"><a class="nav-link btn btn-sm btn-outline-accent px-3 py-1" href="contact.html">Contact Us</a></li>
+                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0 d-flex gap-1 align-items-center accessibility-controls">
+                        <button id="contrastBtn" class="btn btn-xs btn-outline-accent rounded-pill px-2.5 py-1 text-xs" style="font-size: 0.75rem;">Contrast</button>
+                        <button id="textDecBtn" class="btn btn-xs btn-outline-light rounded-circle text-xs" style="width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem;">-</button>
+                        <button id="textResetBtn" class="btn btn-xs btn-outline-light rounded-circle text-xs" style="width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem;"><i class="fas fa-sync-alt" style="font-size: 0.65rem;"></i></button>
+                        <button id="textIncBtn" class="btn btn-xs btn-outline-light rounded-circle text-xs" style="width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem;">+</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <!-- Products Hero -->
+    <div class="products-hero inner-hero">
+        <div class="hero-bg-blobs">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+        </div>
+        <div class="container position-relative">
+            <div class="text-center">
+                <div class="hero-badge mb-4 d-inline-flex"><span class="badge-dot"></span><span>Software Catalog</span></div>
+                <h1 class="display-4 fw-bold text-white mb-4">Enterprise AI Solutions</h1>
+                <p class="lead text-light opacity-75 mb-0" style="max-width:600px;margin:0 auto;">Fully integrated software suites engineered for automation, predictive analytics, and conversational intelligence.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Sort & Filter Bar -->
+    <section class="bg-light text-dark pb-0 pt-3" style="padding: 20px 0 0;">
+        <div class="container">
+            <div class="sort-bar bg-white p-3 rounded-4 shadow-sm border border-light d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+                <div class="filter-chips">
+                    <button class="filter-chip active" onclick="filterProducts('all', this)">All Products</button>
+                    <button class="filter-chip" onclick="filterProducts('new', this)">New Releases</button>
+                    <button class="filter-chip" onclick="filterProducts('legacy', this)">Legacy Support</button>
+                    <button class="filter-chip" onclick="filterProducts('analytics', this)">Analytics</button>
+                    <button class="filter-chip" onclick="filterProducts('assistant', this)">Assistants</button>
+                </div>
+                <div class="d-flex align-items-center gap-2 mt-3 mt-md-0">
+                    <button id="sortToggle" class="btn btn-sm btn-outline-secondary">Sort</button>
+                    <div id="sortControls" style="display:none;">
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" id="sortDropdown" data-bs-toggle="dropdown">Recommended</button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="javascript:void(0)" onclick="updateSort('Newest First')">Newest First</a></li>
+                                <li><a class="dropdown-item" href="javascript:void(0)" onclick="updateSort('Top Rated')">Top Rated</a></li>
+                                <li><a class="dropdown-item" href="javascript:void(0)" onclick="updateSort('Recommended')">Recommended</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Catalog List -->
+    <section class="bg-light text-dark" id="new-releases" style="padding: 40px 0 80px;">
+        <div class="container">
+            <div class="row g-4" id="products-container">
+                <!-- Products dynamically loaded by JS -->
+                <div class="col-12 text-center py-5" id="productsLoading">
+                    <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading products...</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews and Verified Customer Feedbacks -->
+    <section class="bg-light text-dark border-top" style="padding: 80px 0;">
+        <div class="container">
+            <div class="d-flex align-items-center justify-content-between mb-5 flex-wrap gap-3">
+                <div>
+                    <h2 class="fw-bold mb-1" style="font-family:'Outfit',sans-serif;">
+                        <i class="fas fa-comments me-2" style="color:var(--accent-blue);"></i>Customer Feedback
+                    </h2>
+                    <p class="text-muted small mb-0">Read verified experiences from our SaaS subscribers.</p>
+                </div>
+                <button class="btn btn-accent px-4 py-2.5 rounded-pill fw-bold" onclick="openReviewModal()"><i class="fas fa-edit me-2"></i>Write a Review</button>
+            </div>
+            
+            <div class="row g-4" id="reviewsContainer">
+                <!-- Loaded dynamically by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Product Information Modal -->
+    <div class="modal fade" id="productDetailModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content text-white border border-secondary" style="background: var(--secondary-dark); border-radius: 24px;">
+                <div class="modal-header border-bottom border-secondary p-4">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="brand-icon rounded-3 bg-primary bg-opacity-10 p-2" id="modalProductIcon" style="font-size:1.8rem;color:var(--accent-blue);"><i class="fas fa-robot"></i></div>
+                        <div>
+                            <h4 class="modal-title fw-bold" id="modalProductName" style="font-family:'Outfit',sans-serif;">Product Name</h4>
+                            <div class="star-rating text-warning" id="modalProductRating">★★★★★ <span class="text-muted ms-1 small">(5.0)</span></div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4" style="background: rgba(7, 11, 25, 0.5);">
+                    <!-- Modal Navigation Tabs -->
+                    <div class="d-flex gap-2 mb-4 border-bottom border-secondary pb-3 flex-wrap">
+                        <button class="detail-tab-btn active" id="tabBtnOverview" onclick="switchModalTab('overview')"><i class="fas fa-info-circle me-1"></i>Overview &amp; Specs</button>
+                        <button class="detail-tab-btn" id="tabBtnPricing" onclick="switchModalTab('pricing')"><i class="fas fa-tags me-1"></i>Packages &amp; Wishes</button>
+                        <button class="detail-tab-btn" id="tabBtnNews" onclick="switchModalTab('news')"><i class="fas fa-newspaper me-1"></i>News &amp; Articles</button>
+                        <button class="detail-tab-btn" id="tabBtnRequest" onclick="switchModalTab('request')"><i class="fas fa-shield-alt me-1"></i>Inquire &amp; Demo</button>
+                    </div>
+
+                    <!-- Modal Tab Panels -->
+                    <div id="modalPanelOverview" class="modal-panel">
+                        <p class="text-white mb-4" id="modalProductDescription">Detailed description...</p>
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="bg-dark bg-opacity-20 p-3 rounded-3 border border-secondary">
+                                    <div class="text-white-50 small fw-semibold">Integration</div>
+                                    <div class="text-white mt-1 fw-bold" id="modalProductIntegration">—</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="bg-dark bg-opacity-20 p-3 rounded-3 border border-secondary">
+                                    <div class="text-white-50 small fw-semibold">Deployment</div>
+                                    <div class="text-white mt-1 fw-bold" id="modalProductDeployment">—</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="bg-dark bg-opacity-20 p-3 rounded-3 border border-secondary">
+                                    <div class="text-white-50 small fw-semibold">Release Date</div>
+                                    <div class="text-white mt-1 fw-bold" id="modalProductRelease">—</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="modalPanelPricing" class="modal-panel" style="display: none;">
+                        <h6 class="text-white fw-bold mb-3 border-bottom pb-2 border-secondary">Subscription Pricing Options</h6>
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-4">
+                                <div class="price-card-modal">
+                                    <div class="fw-bold text-white small">Basic Package</div>
+                                    <div class="my-2"><strong class="fs-4 text-white" id="modalBasicPrice">£299</strong><span class="text-white-50">/mo</span></div>
+                                    <div class="text-white-50 small">Standard features included.</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="price-card-modal">
+                                    <div class="fw-bold text-white small">Standard Package</div>
+                                    <div class="my-2"><strong class="fs-4 text-white" id="modalStandardPrice">£799</strong><span class="text-white-50">/mo</span></div>
+                                    <div class="text-white-50 small">Advanced integrations included.</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="price-card-modal">
+                                    <div class="fw-bold text-white small">Custom Enterprise</div>
+                                    <div class="my-2"><strong class="fs-4 text-white">Custom</strong></div>
+                                    <div class="text-white-50 small">Specialized SLAs<br><strong class="text-warning">Contact Sales</strong></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="modalWishes" class="form-label text-white-50">Custom Configuration Wishes / Details</label>
+                            <textarea class="form-control bg-dark bg-opacity-40 text-white border-secondary" id="modalWishes" rows="3" placeholder="Tell us if you need custom workflows, integrations, or specific models fine-tuned..."></textarea>
+                        </div>
+                        <div class="text-end">
+                            <button class="btn btn-accent btn-sm rounded-3" onclick="switchModalTab('request')">Proceed to Request <i class="fas fa-arrow-right ms-1"></i></button>
+                        </div>
+                    </div>
+
+                    <div id="modalPanelNews" class="modal-panel" style="display: none;">
+                        <div id="modalNewsContent">
+                            <!-- Populated with tailored articles based on selected product -->
+                        </div>
+                    </div>
+
+                    <div id="modalPanelRequest" class="modal-panel" style="display: none;">
+                        <form id="modalRequestForm" class="needs-validation" novalidate>
+                            <input type="hidden" id="reqProductName">
+                            <div class="row g-3 mb-3">
+                                <div class="col-md-6">
+                                    <label for="reqName" class="form-label text-white-50">Full Name *</label>
+                                    <input type="text" class="form-control bg-dark bg-opacity-40 text-white border-secondary" id="reqName" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="reqEmail" class="form-label text-white-50">Email Address *</label>
+                                    <input type="email" class="form-control bg-dark bg-opacity-40 text-white border-secondary" id="reqEmail" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="reqPhone" class="form-label text-white-50">Phone Number *</label>
+                                    <input type="text" class="form-control bg-dark bg-opacity-40 text-white border-secondary" id="reqPhone" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="reqCompany" class="form-label text-white-50">Company Name *</label>
+                                    <input type="text" class="form-control bg-dark bg-opacity-40 text-white border-secondary" id="reqCompany" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="reqCountry" class="form-label text-white-50">Country *</label>
+                                    <input type="text" class="form-control bg-dark bg-opacity-40 text-white border-secondary" id="reqCountry" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="reqJob" class="form-label text-white-50">Job Title *</label>
+                                    <input type="text" class="form-control bg-dark bg-opacity-40 text-white border-secondary" id="reqJob" required>
+                                </div>
+                            </div>
+                            <div class="row g-3 mb-4">
+                                <div class="col-md-6">
+                                    <label for="reqPackage" class="form-label text-white-50">Package Level</label>
+                                    <select class="form-select bg-dark bg-opacity-40 text-white border-secondary" id="reqPackage" onchange="updateDemoPriceDisplay()">
+                                        <option value="Basic Package">Basic Package (£299/mo)</option>
+                                        <option value="Standard Package" selected>Standard Package (£799/mo)</option>
+                                        <option value="Custom Plan">Custom Enterprise Plan</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label text-white-50">Action Option</label>
+                                    <div class="d-flex gap-3 mt-1">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="reqAction" id="actionInquiry" value="Inquiry" checked onchange="updateDemoPriceDisplay()">
+                                            <label class="form-check-label text-white" for="actionInquiry">Submit Inquiry (Free)</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="reqAction" id="actionDemo" value="Demo" onchange="updateDemoPriceDisplay()">
+                                            <label class="form-check-label text-white" for="actionDemo">Set a Demo</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-3 bg-info bg-opacity-10 border border-info rounded-3 mb-4 text-white d-none" id="demoDepositWarning">
+                                <i class="fas fa-info-circle me-1"></i> Demo may charge, we will contact you shortly.
+                            </div>
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-accent px-5 py-3 rounded-pill fw-bold" id="reqSubmitBtn">Submit Verified Request</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Review Writer Modal -->
+    <div class="modal fade" id="writeReviewModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-white border border-secondary" style="background: var(--secondary-dark); border-radius: 20px;">
+                <div class="modal-header border-bottom border-secondary p-4">
+                    <h5 class="modal-title fw-bold" style="font-family:'Outfit',sans-serif;"><i class="fas fa-edit text-accent-cyan me-2"></i>Write a Customer Review</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="reviewForm" novalidate>
+                    <div class="modal-body p-4">
+                        <div class="mb-3">
+                            <label for="revName" class="form-label text-white-50">Your Name *</label>
+                            <input type="text" class="form-control bg-dark bg-opacity-40 text-white border-secondary" id="revName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="revEmail" class="form-label text-white-50">Email Address (Registered purchase verification) *</label>
+                            <input type="email" class="form-control bg-dark bg-opacity-40 text-white border-secondary" id="revEmail" required>
+                            <div class="form-text text-muted" style="font-size:0.75rem;">Verified reviewer tags will be assigned to client accounts with registered purchases.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="revRole" class="form-label text-white-50">Role &amp; Company *</label>
+                            <input type="text" class="form-control bg-dark bg-opacity-40 text-white border-secondary" id="revRole" placeholder="e.g. CTO, FinTech Innovations" required>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="revProduct" class="form-label text-white-50">Select Product *</label>
+                                <select class="form-select bg-dark bg-opacity-40 text-white border-secondary" id="revProduct" required>
+                                    <!-- Loaded dynamically -->
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="revRating" class="form-label text-white-50">Rating *</label>
+                                <select class="form-select bg-dark bg-opacity-40 text-white border-secondary" id="revRating" required>
+                                    <option value="5">★★★★★ (5 Stars)</option>
+                                    <option value="4">★★★★☆ (4 Stars)</option>
+                                    <option value="3">★★★☆☆ (3 Stars)</option>
+                                    <option value="2">★★☆☆☆ (2 Stars)</option>
+                                    <option value="1">★☆☆☆☆ (1 Star)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="revText" class="form-label text-white-50">Review Details *</label>
+                            <textarea class="form-control bg-dark bg-opacity-40 text-white border-secondary" id="revText" rows="4" required></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-top border-secondary p-3">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-accent px-4 py-2" id="revSubmitBtn">Post Review</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-4">
+                    <div class="footer-brand mb-3">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2" class="me-2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                        AI-Solution
+                    </div>
+                    <p class="footer-tagline small">AI-Solution: Empower enterprise workforces with next-generation AI virtual assistants and prototyping solutions.</p>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <h6 class="footer-heading">Products</h6>
+                    <ul class="footer-links" id="footerProductLinks">
+                        <!-- Loaded dynamically -->
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <h6 class="footer-heading">Company</h6>
+                    <ul class="footer-links">
+                        <li><a href="case-studies.html">Case Studies</a></li>
+                        <li><a href="news.html">News</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h6 class="footer-heading">Contact</h6>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt me-2" style="color:var(--accent-blue);"></i><a href="https://maps.google.com/?q=Innovation+Hub,+Sunderland+SR1+1PB,+UK" target="_blank" class="text-decoration-none" style="color: rgba(255,255,255,0.75) !important;">Innovation Hub, Sunderland SR1 1PB, UK</a></li>
+                        <li><i class="fas fa-envelope me-2" style="color:var(--accent-blue);"></i>hello@ai-solution.co.uk</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="footer-divider">
+            <div class="row align-items-center">
+                <div class="col-md-4 text-center text-md-start text-muted small">&copy; 2024 AI-Solution Ltd. All rights reserved.</div>
+                <div class="col-md-4 text-center text-muted small py-2 py-md-0">
+                    <span class="text-muted">Staff Access:</span>
+                    <a href="admin-login.php" class="text-decoration-none text-muted small ms-1" style="color:var(--accent-blue) !important; font-weight:600;"><i class="fas fa-lock me-1"></i>Portal Login</a>
+                </div>
+                <div class="col-md-4 text-center text-md-end">
+                    <a href="#" class="text-muted text-decoration-none me-3 small">Privacy Policy</a>
+                    <a href="#" class="text-muted text-decoration-none small">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Chatbot -->
+    <div class="floating-chatbot">
+        <div class="chatbot-tooltip">Need help? Chat with AI-Assistant</div>
+        <button class="chatbot-btn" id="chatbotBtn" aria-label="Open Chatbot">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        </button>
+    </div>
+
+    <!-- AI Chatbot Panel -->
+    <div class="chatbot-panel" id="chatbotPanel">
+        <div class="chatbot-header">
+            <div class="chatbot-header-info">
+                <div class="chatbot-status-dot"></div>
+                <span class="fw-bold text-white" style="font-size: 0.95rem;">AI Solutions Assistant</span>
+            </div>
+            <button class="chatbot-close-btn" id="closeChatbot" aria-label="Close Chatbox">&times;</button>
+        </div>
+        <div class="chatbot-history" id="chatbotHistory">
+            <div class="chat-msg bot">Hello! I am your AI assistant. How can I help you today?</div>
+        </div>
+        <div class="chatbot-quick-replies" id="chatbotQuickReplies">
+            <button class="quick-reply-btn" data-reply="How to submit a demo inquiry?">Submit Inquiry</button>
+            <button class="quick-reply-btn" data-reply="What are your pricing plans?">Pricing Plans</button>
+            <button class="quick-reply-btn" data-reply="Where are your office locations?">Offices</button>
+            <button class="quick-reply-btn" data-reply="What case studies do you have?">Case Studies</button>
+        </div>
+        <form class="chatbot-input-form" id="chatbotForm">
+            <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Type a message..." autocomplete="off" required>
+            <button type="submit" class="chatbot-send-btn" aria-label="Send message">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+        </form>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast-container">
+        <div class="toast-custom" id="submitToast">
+            <span class="toast-icon">✓</span>
+            <div>
+                <strong class="d-block" style="color: var(--accent-blue);" id="toastTitle">Notification</strong>
+                <span class="small text-light opacity-75" id="toastMessage">Inquiry recorded.</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Sort toggle: hide sort controls until user clicks the Sort button
+        const sortToggle = document.getElementById('sortToggle');
+        const sortControls = document.getElementById('sortControls');
+        if (sortToggle && sortControls) {
+            sortToggle.addEventListener('click', () => {
+                if (sortControls.style.display === 'none' || !sortControls.style.display) {
+                    sortControls.style.display = 'inline-block';
+                } else {
+                    sortControls.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

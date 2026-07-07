@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Get in touch with AI-Solution. Contact our team for a demo, partnership, or any enterprise inquiry. Sunderland, UK.">
+    <title>Contact Us | AI-Solution</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .contact-hero {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+            padding: 160px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(0,240,255,0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(130,87,229,0.07) 0%, transparent 50%);
+        }
+        .contact-hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 40%, var(--accent-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .contact-card {
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.07);
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .contact-sidebar {
+            background: linear-gradient(160deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-sidebar::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -40%;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(0,240,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .contact-info-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: rgba(0,240,255,0.1);
+            border: 1px solid rgba(0,240,255,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-blue);
+            flex-shrink: 0;
+            font-size: 1rem;
+        }
+        .contact-info-label { color: rgba(255,255,255,0.4); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .contact-info-value { color: #ffffff; font-size: 0.95rem; font-weight: 500; margin-top: 2px; }
+        .contact-form-area { padding: 2.5rem; }
+        .form-section-label {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary-dark);
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(0,0,0,0.06);
+        }
+        .map-section {
+            background: #f8f9fa;
+            padding: 80px 0;
+        }
+        .map-embed {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            height: 400px;
+            background: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .map-overlay-text {
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+        }
+        .map-pin {
+            font-size: 3rem;
+            color: var(--accent-blue);
+            display: block;
+            margin-bottom: 1rem;
+            animation: pinBounce 2s ease-in-out infinite;
+        }
+        @keyframes pinBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .office-card {
+            background: var(--primary-dark);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        .office-card:hover {
+            border-color: rgba(0,240,255,0.2);
+            background: var(--secondary-dark);
+        }
+        .office-flag { font-size: 2rem; margin-bottom: 1rem; }
+        .faq-section { background: #ffffff; padding: 80px 0; }
+        .faq-item {
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            padding: 1.2rem 0;
+        }
+        .faq-question {
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--primary-dark);
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            transition: color 0.2s;
+        }
+        .faq-question:hover { color: var(--accent-blue); }
+        .faq-question .faq-icon { transition: transform 0.3s; font-size: 0.85rem; }
+        .faq-question.open .faq-icon { transform: rotate(180deg); }
+        .faq-answer {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+        }
+        .faq-answer.open { max-height: 300px; padding-top: 0.8rem; }
+
+        .success-message {
+            background: rgba(16,185,129,0.1);
+            border: 1px solid rgba(16,185,129,0.25);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            color: #10b981;
+            display: none;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mb-1 me-2" style="color:var(--accent-blue);"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                AI-Solution
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="case-studies.html">Case Studies</a></li>
+                    <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+                    <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
+                    <li class="nav-item ms-lg-2"><a class="nav-link btn btn-sm btn-outline-accent px-3 py-1" href="#demo">Contact Us</a></li>
+                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0 d-flex gap-1 align-items-center accessibility-controls">
+                        <button id="contrastBtn" class="btn btn-xs btn-outline-accent rounded-pill px-2 py-1" style="font-size:0.75rem;">Contrast</button>
+                        <button id="textDecBtn" class="btn btn-xs btn-outline-light rounded-circle" style="width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;font-size:0.75rem;">-</button>
+                        <button id="textResetBtn" class="btn btn-xs btn-outline-light rounded-circle" style="width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;font-size:0.75rem;"><i class="fas fa-sync-alt" style="font-size: 0.65rem;"></i></button>
+                        <button id="textIncBtn" class="btn btn-xs btn-outline-light rounded-circle" style="width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;font-size:0.75rem;">+</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <!-- Contact Hero -->
+    <div class="contact-hero inner-hero">
+        <div class="hero-bg-blobs">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+        </div>
+        <div class="container position-relative text-center">
+            <div class="hero-badge mb-4 d-inline-flex"><span class="badge-dot"></span><span>Get in Touch</span></div>
+            <h1 class="display-4 fw-bold text-white mb-4">Contact Our Solutions Team</h1>
+            <p class="lead text-light opacity-75 mb-0" style="max-width: 600px; margin: 0 auto;">Have questions about our enterprise virtual assistants, database migration integrations, or pricing models? Let's connect.</p>
+        </div>
+    </div>
+
+    <!-- Main Contact Section -->
+    <section style="background:#f8f9fa; padding: 80px 0;" id="demo">
+        <div class="container">
+            <div class="contact-card">
+                <div class="row g-0">
+                    <!-- Sidebar Info -->
+                    <div class="col-lg-4">
+                        <div class="contact-sidebar h-100">
+                            <h4 class="text-white fw-bold mb-2" style="font-family:'Outfit',sans-serif;">Contact Information</h4>
+                            <p class="mb-4" style="color:rgba(255,255,255,0.5);font-size:0.9rem;">Fill out the form and our solutions team will get back to you within 24 hours.</p>
+                            
+                            <div class="contact-info-item">
+                                <div class="contact-info-icon"><i class="fas fa-phone-alt"></i></div>
+                                <div>
+                                    <div class="contact-info-label">Phone</div>
+                                    <div class="contact-info-value">+44 191 000 1234</div>
+                                </div>
+                            </div>
+                            <div class="contact-info-item">
+                                <div class="contact-info-icon"><i class="fas fa-envelope"></i></div>
+                                <div>
+                                    <div class="contact-info-label">Email</div>
+                                    <div class="contact-info-value">hello@ai-solution.co.uk</div>
+                                </div>
+                            </div>
+                            <div class="contact-info-item">
+                                <div class="contact-info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                                <div>
+                                    <div class="contact-info-label">Headquarters (UK)</div>
+                                    <div class="contact-info-value"><a href="https://maps.google.com/?q=Innovation+Hub,+Sunderland+SR1+1PB,+UK" target="_blank" class="text-white text-decoration-none" style="color: #ffffff !important;">Innovation Hub, Sunderland SR1 1PB, UK</a></div>
+                                </div>
+                            </div>
+                            <div class="contact-info-item">
+                                <div class="contact-info-icon"><i class="fas fa-clock"></i></div>
+                                <div>
+                                    <div class="contact-info-label">Business Hours</div>
+                                    <div class="contact-info-value">Mon–Fri, 9:00 AM – 6:00 PM GMT</div>
+                                </div>
+                            </div>
+
+                            <div class="mt-4 pt-4" style="border-top: 1px solid rgba(255,255,255,0.08);">
+                                <p class="contact-info-label mb-3">Follow Us</p>
+                                <div class="d-flex gap-3">
+                                    <a href="#" style="width:38px;height:38px;border-radius:8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;transition:all 0.2s;" onmouseenter="this.style.background='rgba(0,240,255,0.15)'" onmouseleave="this.style.background='rgba(255,255,255,0.06)'"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#" style="width:38px;height:38px;border-radius:8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;transition:all 0.2s;" onmouseenter="this.style.background='rgba(0,240,255,0.15)'" onmouseleave="this.style.background='rgba(255,255,255,0.06)'"><i class="fab fa-twitter"></i></a>
+                                    <a href="#" style="width:38px;height:38px;border-radius:8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;transition:all 0.2s;" onmouseenter="this.style.background='rgba(0,240,255,0.15)'" onmouseleave="this.style.background='rgba(255,255,255,0.06)'"><i class="fab fa-github"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Area -->
+                    <div class="col-lg-8">
+                        <div class="contact-form-area">
+                            <h4 class="mb-1" style="font-family:'Outfit',sans-serif;">Request a Demo</h4>
+                            <p class="text-muted small mb-4">Tell us about your enterprise needs and we'll arrange a personalised walkthrough.</p>
+
+                            <div id="formSuccessMsg" class="success-message">
+                                <i class="fas fa-check-circle me-2"></i>
+                                <strong>Thank you!</strong> Your inquiry has been received. We'll be in touch within 24 hours.
+                            </div>
+
+                            <form action="submit_inquiry.php" method="POST" id="leadForm" novalidate>
+                                <div class="form-section-label"><i class="fas fa-user me-2" style="color:var(--accent-blue);font-size:0.9rem;"></i>Personal Information</div>
+                                <div class="row g-3 mb-4">
+                                    <div class="col-md-6">
+                                        <label for="fullName" class="form-label">Full Name <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control form-control-custom" id="fullName" name="full_name" placeholder="John Doe" required>
+                                        <div class="invalid-feedback">Please enter your full name.</div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="emailAddress" class="form-label">Email Address <span class="text-danger">*</span></label>
+                                        <input type="email" class="form-control form-control-custom" id="emailAddress" name="email_address" placeholder="john@company.com" required>
+                                        <div class="invalid-feedback">Please enter a valid company email.</div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="phoneNumber" class="form-label">Phone Number <span class="text-danger">*</span></label>
+                                        <input type="tel" class="form-control form-control-custom" id="phoneNumber" name="phone_number" placeholder="+44 123 456 7890" required>
+                                        <div class="invalid-feedback">Please enter a valid phone number.</div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="country" class="form-label">Country <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control form-control-custom" id="country" name="country" placeholder="e.g. United Kingdom" required>
+                                        <div class="invalid-feedback">Please enter your country.</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-section-label"><i class="fas fa-building me-2" style="color:var(--accent-blue);font-size:0.9rem;"></i>Company Details</div>
+                                <div class="row g-3 mb-4">
+                                    <div class="col-md-6">
+                                        <label for="companyName" class="form-label">Company Name <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control form-control-custom" id="companyName" name="company_name" placeholder="Your Enterprise" required>
+                                        <div class="invalid-feedback">Please enter your company name.</div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="jobTitle" class="form-label">Job Title <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control form-control-custom" id="jobTitle" name="job_title" placeholder="e.g. CTO, IT Director" required>
+                                        <div class="invalid-feedback">Please enter your job title.</div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="productInterest" class="form-label">Product of Interest <span class="text-danger">*</span></label>
+                                        <select class="form-select form-control-custom" id="productInterest" name="product_name" required>
+                                            <option value="OmniMetrics AI" selected>OmniMetrics AI</option>
+                                            <option value="Nexus Assist Pro">Nexus Assist Pro</option>
+                                            <option value="LogicBuilder 3.0">LogicBuilder 3.0</option>
+                                            <option value="ComplianceBot AI">ComplianceBot AI</option>
+                                            <option value="AutoRespond Agent">AutoRespond Agent</option>
+                                            <option value="DataSync Core AI">DataSync Core AI</option>
+                                            <option value="OmniSearch Enterprise">OmniSearch Enterprise</option>
+                                        </select>
+                                        <div class="invalid-feedback">Please select a product.</div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="packageInterest" class="form-label">Package Level <span class="text-danger">*</span></label>
+                                        <select class="form-select form-control-custom" id="packageInterest" name="package_name" required onchange="updateContactDemoWarning()">
+                                            <option value="Basic Package">Basic Package</option>
+                                            <option value="Standard Package" selected>Standard Package</option>
+                                            <option value="Custom Plan">Custom Plan</option>
+                                        </select>
+                                        <div class="invalid-feedback">Please select a package level.</div>
+                                    </div>
+                                    <div class="col-12 mt-3">
+                                        <label class="form-label">Request Type <span class="text-danger">*</span></label>
+                                        <div class="d-flex gap-4 align-items-center mt-1">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="request_type" id="contactInquiry" value="Inquiry" checked onchange="updateContactDemoWarning()">
+                                                <label class="form-check-label text-dark fw-semibold" for="contactInquiry">Submit Inquiry (Free)</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="request_type" id="contactDemo" value="Demo" onchange="updateContactDemoWarning()">
+                                                <label class="form-check-label text-dark fw-semibold" for="contactDemo">Set a Demo</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="p-3 bg-info bg-opacity-10 border border-info rounded-3 my-3 text-dark d-none" id="contactDemoWarning">
+                                    <i class="fas fa-info-circle me-1"></i> Demo may charge, we will contact you shortly.
+                                </div>
+
+                                <div class="form-section-label"><i class="fas fa-comment-dots me-2" style="color:var(--accent-blue);font-size:0.9rem;"></i>Your Inquiry</div>
+                                <div class="row g-3">
+                                    <div class="col-12">
+                                        <label for="inquiry" class="form-label">Inquiry Details <span class="text-danger">*</span></label>
+                                        <textarea class="form-control form-control-custom" id="inquiry" name="inquiry_details" rows="5" placeholder="Briefly describe your enterprise requirements, current challenges, or questions..." required></textarea>
+                                        <div class="invalid-feedback">Please provide your inquiry details.</div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gdprCheck" required>
+                                            <label class="form-check-label text-muted small" for="gdprCheck">
+                                                I agree to AI-Solution processing my data to respond to this inquiry, in accordance with our <a href="#" class="text-decoration-none" style="color:var(--accent-blue);">Privacy Policy</a>. <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="invalid-feedback">You must agree before submitting.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mt-2">
+                                        <button type="submit" class="btn btn-accent btn-lg w-100 fw-bold py-3" id="submitContactBtn">
+                                            <i class="fas fa-paper-plane me-2"></i>Submit Inquiry
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Office Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <div class="row align-items-center mb-4">
+                <div class="col">
+                    <h3 class="fw-bold mb-1" style="font-family:'Outfit',sans-serif;">Our Offices</h3>
+                    <p class="text-muted small mb-0">Visit us at one of our global locations.</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-8">
+                    <div class="map-embed" style="padding: 0;">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2294.0207038101416!2d-1.385566323145413!3d54.907070172782834!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487e65f3f98299a9%3A0xe5a3632e22c9e782!2sSunderland%20SR1%201PB%2C%20UK!5e0!3m2!1sen!2sus!4v1719240000000!5m2!1sen!2sus" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <a href="https://maps.google.com/?q=Sunderland+SR1+1PB" target="_blank" class="text-decoration-none">
+                                <div class="office-card d-flex gap-3 align-items-center">
+                                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=400" alt="Sunderland HQ" style="width: 80px; height: 60px; object-fit: cover; border-radius: 8px; border: 1px solid rgba(255,255,255,0.12);">
+                                    <div>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="office-flag" style="font-size: 1.2rem; margin-bottom: 0;">🇬🇧</span>
+                                            <h6 class="text-white fw-bold mb-0" style="font-family:'Outfit',sans-serif;">Sunderland HQ, UK</h6>
+                                        </div>
+                                        <p class="text-muted small mb-0" style="font-size:0.75rem; margin-top:2px;">Innovation Hub, SR1 1PB</p>
+                                        <p class="text-muted small mb-0" style="font-size:0.75rem;">+44 191 000 1234</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-12">
+                            <a href="https://maps.google.com/?q=350+Fifth+Avenue,+NY+10118" target="_blank" class="text-decoration-none">
+                                <div class="office-card d-flex gap-3 align-items-center">
+                                    <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=400" alt="New York Office" style="width: 80px; height: 60px; object-fit: cover; border-radius: 8px; border: 1px solid rgba(255,255,255,0.12);">
+                                    <div>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="office-flag" style="font-size: 1.2rem; margin-bottom: 0;">🇺🇸</span>
+                                            <h6 class="text-white fw-bold mb-0" style="font-family:'Outfit',sans-serif;">New York Office, USA</h6>
+                                        </div>
+                                        <p class="text-muted small mb-0" style="font-size:0.75rem; margin-top:2px;">350 Fifth Avenue, NY 10118</p>
+                                        <p class="text-muted small mb-0" style="font-size:0.75rem;">+1 212 000 5678</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-12">
+                            <a href="https://maps.google.com/?q=1+Raffles+Place,+Singapore+048616" target="_blank" class="text-decoration-none">
+                                <div class="office-card d-flex gap-3 align-items-center">
+                                    <img src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?q=80&w=400" alt="Singapore Office" style="width: 80px; height: 60px; object-fit: cover; border-radius: 8px; border: 1px solid rgba(255,255,255,0.12);">
+                                    <div>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="office-flag" style="font-size: 1.2rem; margin-bottom: 0;">🇸🇬</span>
+                                            <h6 class="text-white fw-bold mb-0" style="font-family:'Outfit',sans-serif;">Singapore Office, Singapore</h6>
+                                        </div>
+                                        <p class="text-muted small mb-0" style="font-size:0.75rem; margin-top:2px;">1 Raffles Place, 048616</p>
+                                        <p class="text-muted small mb-0" style="font-size:0.75rem;">+65 6000 9012</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h3 class="text-center fw-bold mb-2" style="font-family:'Outfit',sans-serif;">Frequently Asked Questions</h3>
+                    <p class="text-center text-muted mb-5">Have a question? We might already have the answer.</p>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            How long does a typical demo session last?
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">Demo sessions typically run for 45–60 minutes and are fully tailored to your industry and use case. Our solutions engineer will walk you through the features most relevant to your enterprise.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            How quickly will I receive a response?
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">Our team typically responds within 24 business hours. For urgent matters, please call us directly at +44 191 000 1234 during our business hours (Mon–Fri, 9 AM – 6 PM GMT).</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            Do you offer a free trial period?
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">Yes! We offer a 30-day pilot program for qualifying enterprise customers. The pilot includes full support from a dedicated account manager and access to all features of the selected product.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            Is my data secure when using AI-Solution products?
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">Absolutely. All our products are ISO 27001 certified and fully GDPR compliant. We offer both cloud-hosted and on-premise deployment options. Your data never leaves your chosen environment.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            Can I migrate from a legacy AI-Solution product?
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">Yes, we provide a dedicated migration support program. Our team will handle the full transition from any legacy product (Nexus Assist v1, DataSync Core) to the latest solutions with zero downtime.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-4">
+                    <div class="footer-brand mb-3">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2" class="me-2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                        AI-Solution
+                    </div>
+                    <p class="footer-tagline small">AI-Solution: Empower enterprise workforces with next-generation AI virtual assistants and prototyping solutions.</p>
+                    <div class="social-links mt-3">
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <h6 class="footer-heading">Products</h6>
+                    <ul class="footer-links">
+                        <li><a href="products.html#omnimetrics">OmniMetrics AI</a></li>
+                        <li><a href="products.html#nexus">Nexus Assist Pro</a></li>
+                        <li><a href="products.html#logicbuilder">LogicBuilder 3.0</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <h6 class="footer-heading">Company</h6>
+                    <ul class="footer-links">
+                        <li><a href="case-studies.html">Case Studies</a></li>
+                        <li><a href="news.html">News</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h6 class="footer-heading">Contact</h6>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt me-2" style="color:var(--accent-blue);"></i><a href="https://maps.google.com/?q=Innovation+Hub,+Sunderland+SR1+1PB,+UK" target="_blank" class="text-decoration-none" style="color: rgba(255,255,255,0.75) !important;">Innovation Hub, Sunderland SR1 1PB, UK</a></li>
+                        <li><i class="fas fa-envelope me-2" style="color:var(--accent-blue);"></i>hello@ai-solution.co.uk</li>
+                        <li><i class="fas fa-phone me-2" style="color:var(--accent-blue);"></i>+44 191 000 1234</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="footer-divider">
+            <div class="row align-items-center">
+                <div class="col-md-4 text-center text-md-start text-muted small">&copy; 2024 AI-Solution Ltd. All rights reserved.</div>
+                <div class="col-md-4 text-center text-muted small py-2 py-md-0">
+                    <span class="text-muted">Staff Access:</span>
+                    <a href="admin-login.php" class="text-decoration-none text-muted small ms-1" style="color:var(--accent-blue) !important; font-weight:600;"><i class="fas fa-lock me-1"></i>Portal Login</a>
+                </div>
+                <div class="col-md-4 text-center text-md-end">
+                    <a href="#" class="text-muted text-decoration-none me-3 small">Privacy Policy</a>
+                    <a href="#" class="text-muted text-decoration-none small">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Chatbot -->
+    <div class="floating-chatbot">
+        <div class="chatbot-tooltip">Need help? Chat with AI-Assistant</div>
+        <button class="chatbot-btn" id="chatbotBtn" aria-label="Open Chatbot">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        </button>
+    </div>
+
+    <!-- AI Chatbot Panel -->
+    <div class="chatbot-panel" id="chatbotPanel">
+        <div class="chatbot-header">
+            <div class="chatbot-header-info">
+                <div class="chatbot-status-dot"></div>
+                <span class="fw-bold text-white" style="font-size: 0.95rem;">AI Solutions Assistant</span>
+            </div>
+            <button class="chatbot-close-btn" id="closeChatbot" aria-label="Close Chatbox">&times;</button>
+        </div>
+        <div class="chatbot-history" id="chatbotHistory">
+            <div class="chat-msg bot">Hello! I am your AI assistant. How can I help you today?</div>
+        </div>
+        <div class="chatbot-quick-replies" id="chatbotQuickReplies">
+            <button class="quick-reply-btn" data-reply="How to submit a demo inquiry?">Submit Inquiry</button>
+            <button class="quick-reply-btn" data-reply="What are your pricing plans?">Pricing Plans</button>
+            <button class="quick-reply-btn" data-reply="Where are your office locations?">Offices</button>
+            <button class="quick-reply-btn" data-reply="What case studies do you have?">Case Studies</button>
+        </div>
+        <form class="chatbot-input-form" id="chatbotForm">
+            <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Type a message..." autocomplete="off" required>
+            <button type="submit" class="chatbot-send-btn" aria-label="Send message">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+        </form>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast-container">
+        <div class="toast-custom" id="submitToast">
+            <span class="toast-icon">✓</span>
+            <div>
+                <strong class="d-block" style="color:var(--accent-blue);">Inquiry Received</strong>
+                <span class="small text-light opacity-75">Our team will contact you within 24 hours.</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+    function toggleFaq(el) {
+        const answer = el.nextElementSibling;
+        const isOpen = answer.classList.contains('open');
+        document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+        document.querySelectorAll('.faq-question').forEach(q => q.classList.remove('open'));
+        if (!isOpen) {
+            answer.classList.add('open');
+            el.classList.add('open');
+        }
+    }
+    
+    function updateContactDemoWarning() {
+        const isDemo = document.getElementById('contactDemo').checked;
+        const warningBox = document.getElementById('contactDemoWarning');
+        
+        if (isDemo) {
+            warningBox.classList.remove('d-none');
+            warningBox.innerHTML = '<i class="fas fa-info-circle me-1"></i> Demo may charge, we will contact you shortly.';
+        } else {
+            warningBox.classList.add('d-none');
+        }
+    }
+    
+    // Bind to product selection change as well
+    document.getElementById('productInterest').addEventListener('change', updateContactDemoWarning);
+    </script>
+</body>
+</html>

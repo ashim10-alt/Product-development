@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore AI-Solution events, technical workshops, enterprise roundtable discussions, and photo galleries.">
+    <title>Event Galleries &amp; Showcases | AI-Solution</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Main Style sheet -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        .events-hero {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+            padding: 140px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        .events-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(0,240,255,0.03) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 30%, rgba(130,87,229,0.05) 0%, transparent 50%);
+        }
+        .timeline-container {
+            position: relative;
+            padding-left: 30px;
+            border-left: 2px dashed rgba(14, 165, 233, 0.2);
+            margin-left: 15px;
+        }
+        .timeline-event-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+        .timeline-event-item::before {
+            content: '';
+            position: absolute;
+            left: -41px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+            border: 4px solid var(--secondary-dark);
+            box-shadow: 0 0 10px rgba(14, 165, 233, 0.5);
+        }
+        .timeline-date {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.3rem;
+            display: block;
+        }
+        /* Direct, high-contrast typography overrides for cream-white event cards */
+        .event-card-premium {
+            background-color: #FAF8F5 !important;
+            background: #FAF8F5 !important;
+            border: none !important;
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 
+              0 2px 4px rgba(0, 0, 0, 0.04), 
+              0 12px 28px rgba(0, 0, 0, 0.08), 
+              0 24px 48px rgba(0, 0, 0, 0.06) !important;
+        }
+        .event-card-premium h4 {
+            color: #000000 !important;
+            font-family: 'Outfit', sans-serif !important;
+            font-weight: 800 !important;
+        }
+        .event-card-premium p {
+            color: #334155 !important;
+            font-size: 0.88rem !important;
+            line-height: 1.6 !important;
+            opacity: 1 !important;
+        }
+        .event-card-premium .btn-outline-accent {
+            border: 2px solid #1E40AF !important;
+            color: #1E40AF !important;
+            background: transparent !important;
+            font-weight: 700 !important;
+        }
+        .event-card-premium .btn-outline-accent:hover {
+            background: #1E40AF !important;
+            color: #FFFFFF !important;
+        }
+        .event-card-premium:hover {
+            border-color: rgba(14, 165, 233, 0.25);
+            background: rgba(255,255,255,0.04);
+            transform: translateX(5px);
+        }
+        /* Custom Lightbox styles */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            padding-top: 60px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(7, 11, 25, 0.95);
+            backdrop-filter: blur(12px);
+        }
+        .lightbox-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 800px;
+            max-height: 75vh;
+            object-fit: contain;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.15);
+            animation: zoomIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        @keyframes zoomIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            color: #f1f5f9;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .lightbox-close:hover,
+        .lightbox-close:focus {
+            color: var(--accent-blue);
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .lightbox-caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #94a3b8;
+            padding: 15px 0;
+            font-size: 0.92rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .gallery-overlay-btn {
+            position: absolute;
+            inset: 0;
+            background: rgba(7, 11, 25, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+            color: #ffffff;
+            font-size: 1.5rem;
+        }
+        .gallery-item {
+            position: relative;
+        }
+        .gallery-item:hover .gallery-overlay-btn {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top" role="navigation" aria-label="Main Navigation">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-1 me-2" style="color: var(--accent-blue);"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                AI-Solution
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="case-studies.html">Case Studies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="news.html">News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="events.html">Events</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <a class="nav-link btn btn-sm btn-outline-accent px-3 py-1" href="contact.html">Contact Us</a>
+                    </li>
+                    <!-- Accessibility settings -->
+                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0 d-flex gap-1 align-items-center accessibility-controls">
+                        <button id="contrastBtn" class="btn btn-xs btn-outline-accent rounded-pill px-2.5 py-1 text-xs" aria-label="Toggle Contrast Mode" style="font-size: 0.75rem;">Contrast</button>
+                        <button id="textDecBtn" class="btn btn-xs btn-outline-light rounded-circle text-xs" style="width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem;" aria-label="Decrease Text Size">-</button>
+                        <button id="textResetBtn" class="btn btn-xs btn-outline-light rounded-circle text-xs" style="width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem;" aria-label="Reset Text Size"><i class="fas fa-sync-alt" style="font-size: 0.65rem;"></i></button>
+                        <button id="textIncBtn" class="btn btn-xs btn-outline-light rounded-circle text-xs" style="width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem;" aria-label="Increase Text Size">+</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Events Hero -->
+    <header class="events-hero inner-hero">
+        <div class="hero-bg-blobs">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+        </div>
+        <div class="container position-relative text-center">
+            <div class="hero-badge mb-4 d-inline-flex"><span class="badge-dot"></span><span>Showcase, Webinars &amp; Galleries</span></div>
+            <h1 class="display-4 fw-bold text-white mb-4">Enterprise Events &amp; Showcases</h1>
+            <p class="lead text-light opacity-75 mb-0" style="max-width: 600px; margin: 0 auto;">Connect with our developers, witness live workspace simulations, and explore our recent tech events archive.</p>
+        </div>
+    </header>
+
+    <!-- Timelines & Upcoming Events Section -->
+    <section class="bg-primary-dark text-white" style="padding: 80px 0;">
+        <div class="container">
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-6">
+                    <h2 class="fw-bold" style="font-family:'Outfit',sans-serif;">Upcoming Events &amp; Webinars</h2>
+                    <p class="text-light opacity-75">Mark your calendars for our upcoming webinars, hackathons, and roundtable discussion sessions. Secure your tickets early!</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="timeline-container" id="upcoming-timeline-container">
+                        <!-- Upcoming Event 1 -->
+                        <div class="timeline-event-item">
+                            <span class="timeline-date">October 15-16, 2026</span>
+                            <div class="event-card-premium" style="background-color: #FAF8F5 !important; background: #FAF8F5 !important;">
+                                <span class="badge bg-info text-dark mb-2">Live Summit</span>
+                                <h4 class="fw-bold mb-2" style="color: #000000 !important; font-family: 'Outfit', sans-serif !important; font-weight: 800 !important;">Sunderland Tech Summit 2026</h4>
+                                <p class="small mb-3" style="color: #334155 !important; font-weight: 500 !important; opacity: 1 !important; line-height: 1.6 !important;">Join our executive and engineering teams as we present our B2B integration roadmaps live at the Innovation Hub. Includes roundtable discussions and compliance workshops.</p>
+                                <button class="btn btn-sm btn-outline-accent rounded-pill px-3 py-1.5 small register-event-btn" data-event-title="Sunderland Tech Summit 2026">Reserve Free Pass <i class="fas fa-ticket-alt ms-1"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- Upcoming Event 2 -->
+                        <div class="timeline-event-item">
+                            <span class="timeline-date">November 05, 2026</span>
+                            <div class="event-card-premium" style="background-color: #FAF8F5 !important; background: #FAF8F5 !important;">
+                                <span class="badge bg-purple mb-2">Webinar</span>
+                                <h4 class="fw-bold mb-2" style="color: #000000 !important; font-family: 'Outfit', sans-serif !important; font-weight: 800 !important;">Scaling HR Virtual Assistants</h4>
+                                <p class="small mb-3" style="color: #334155 !important; font-weight: 500 !important; opacity: 1 !important; line-height: 1.6 !important;">An engineering-focused online webinar demonstrating telemetry configurations, active directory security sync policies, and latency tuning for enterprise assistant platforms.</p>
+                                <button class="btn btn-sm btn-outline-accent rounded-pill px-3 py-1.5 small register-event-btn" data-event-title="Scaling HR Virtual Assistants">Register for Webinar <i class="fas fa-video ms-1"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- Upcoming Event 3 (New) -->
+                        <div class="timeline-event-item">
+                            <span class="timeline-date">December 12, 2026</span>
+                            <div class="event-card-premium" style="background-color: #FAF8F5 !important; background: #FAF8F5 !important;">
+                                <h4 class="fw-bold mb-2" style="color: #000000 !important; font-family: 'Outfit', sans-serif !important; font-weight: 800 !important;">Hands-on: Zero-Code Workflow Integrations</h4>
+                                <p class="small mb-3" style="color: #334155 !important; font-weight: 500 !important; opacity: 1 !important; line-height: 1.6 !important;">A workshop session training database administrators and solutions engineers how to migrate SQL schemas and construct custom replication streams in under 20 minutes.</p>
+                                <button class="btn btn-sm btn-outline-accent rounded-pill px-3 py-1.5 small register-event-btn" data-event-title="Hands-on: Zero-Code Workflow Integrations">Register for Workshop <i class="fas fa-tools ms-1"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="bg-secondary-dark p-4 rounded-4 border border-secondary" style="background-image: radial-gradient(circle at 10% 20%, rgba(130, 87, 229, 0.08) 0%, transparent 40%);">
+                        <h4 class="fw-bold mb-3 text-white">Why Attend?</h4>
+                        <ul class="list-unstyled text-white-50 small mb-0">
+                            <li class="mb-3 d-flex align-items-start gap-2"><i class="fas fa-check-circle text-accent-blue mt-1"></i> <span>Direct Q&amp;A sessions with chief AI architects.</span></li>
+                            <li class="mb-3 d-flex align-items-start gap-2"><i class="fas fa-check-circle text-accent-blue mt-1"></i> <span>Hands-on sandbox environment activations.</span></li>
+                            <li class="mb-3 d-flex align-items-start gap-2"><i class="fas fa-check-circle text-accent-blue mt-1"></i> <span>Networking opportunities with B2B solutions providers.</span></li>
+                            <li class="mb-0 d-flex align-items-start gap-2"><i class="fas fa-check-circle text-accent-blue mt-1"></i> <span>Exclusive access to beta feature releases.</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- B2B Archived Events Section -->
+            <div class="mt-5 pt-5 border-top border-secondary">
+                <div class="row align-items-center mb-4">
+                    <div class="col-lg-6">
+                        <h3 class="fw-bold text-white mb-2" style="font-family:'Outfit',sans-serif;"><i class="fas fa-history me-2 text-accent-purple"></i>Archived B2B Events</h3>
+                        <p class="text-white-50 small mb-0">Review some of our most impactful past corporate events, summits, and webinar archives.</p>
+                    </div>
+                </div>
+                <div class="row g-4" id="archived-events-container">
+                    <!-- Dynamic archived B2B events injected here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galleries Section -->
+    <section id="events" class="bg-secondary-dark">
+        <div class="container">
+            <h2 class="section-title text-white">Event Galleries</h2>
+            <p class="text-center text-white-50 mb-5" style="max-width: 600px; margin: 0 auto 3rem;">Browse photographs from our technical panels, regional hackathons, and customer interaction days.</p>
+            
+            <div class="row g-4 mt-3">
+                <div class="col-lg-4 col-md-6">
+                    <div class="card card-custom bg-white text-dark border-0 h-100">
+                        <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=1200', 'Global AI Summit 2025: Our director presenting Nexus Assist Pro integration capabilities.')">
+                            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=600" class="gallery-img card-img-top" alt="Global AI Summit">
+                            <div class="gallery-overlay-btn"><i class="fas fa-search-plus"></i></div>
+                        </div>
+                        <div class="card-body bg-white text-dark">
+                            <h5 class="card-title fs-6 fw-bold mb-1">Global AI Summit 2025</h5>
+                            <p class="card-text text-muted small">Our director presenting Nexus Assist Pro integration capabilities to industry executives.</p>
+                            <span class="text-muted small">Nov 14, 2025</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="card card-custom bg-white text-dark border-0 h-100">
+                        <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=1200', 'B2B Innovation Roundtable: Collaborative session sharing employee digital experience issues.')">
+                            <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=600" class="gallery-img card-img-top" alt="B2B Roundtable">
+                            <div class="gallery-overlay-btn"><i class="fas fa-search-plus"></i></div>
+                        </div>
+                        <div class="card-body bg-white text-dark">
+                            <h5 class="card-title fs-6 fw-bold mb-1">B2B Innovation Roundtable</h5>
+                            <p class="card-text text-muted small">Collaborative session with enterprise HR executives sharing digital employee experience challenges.</p>
+                            <span class="text-muted small">Dec 03, 2025</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="card card-custom bg-white text-dark border-0 h-100">
+                        <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=1200', 'LogicBuilder Hackathon: Over 50 dev teams building zero-code workflows.')">
+                            <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=600" class="gallery-img card-img-top" alt="Hackathon">
+                            <div class="gallery-overlay-btn"><i class="fas fa-search-plus"></i></div>
+                        </div>
+                        <div class="card-body bg-white text-dark">
+                            <h5 class="card-title fs-6 fw-bold mb-1">LogicBuilder Hackathon</h5>
+                            <p class="card-text text-muted small">Over 50 teams constructed workflow automation prototypes using LogicBuilder 3.0.</p>
+                            <span class="text-muted small">Jan 22, 2026</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="card card-custom bg-white text-dark border-0 h-100">
+                        <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=1200', 'Sunderland Tech Exhibition: Live demos of telemetry alerting and performance metrics.')">
+                            <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=600" class="gallery-img card-img-top" alt="Exhibition">
+                            <div class="gallery-overlay-btn"><i class="fas fa-search-plus"></i></div>
+                        </div>
+                        <div class="card-body bg-white text-dark">
+                            <h5 class="card-title fs-6 fw-bold mb-1">Sunderland Tech Exhibition</h5>
+                            <p class="card-text text-muted small">Demoing OmniMetrics predictive analytics dashboards live on the main exhibition floor.</p>
+                            <span class="text-muted small">Feb 10, 2026</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="card card-custom bg-white text-dark border-0 h-100">
+                        <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200', 'AI Prototyping Workshop: Technical session training architects on integration blocks.')">
+                            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=600" class="gallery-img card-img-top" alt="Workshop">
+                            <div class="gallery-overlay-btn"><i class="fas fa-search-plus"></i></div>
+                        </div>
+                        <div class="card-body bg-white text-dark">
+                            <h5 class="card-title fs-6 fw-bold mb-1">AI Prototyping Workshop</h5>
+                            <p class="card-text text-muted small">Hands-on technical workshop training enterprise architects on custom AI integration trees.</p>
+                            <span class="text-muted small">Mar 05, 2026</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="card card-custom bg-white text-dark border-0 h-100">
+                        <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&w=1200', 'London Client Networking Day: Client relations and future roadmap presentations.')">
+                            <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&w=600" class="gallery-img card-img-top" alt="Networking">
+                            <div class="gallery-overlay-btn"><i class="fas fa-search-plus"></i></div>
+                        </div>
+                        <div class="card-body bg-white text-dark">
+                            <h5 class="card-title fs-6 fw-bold mb-1">London Client Networking Day</h5>
+                            <p class="card-text text-muted small">Fostering relationships and discussing Phase 2 AI-Solution dashboard roadmaps.</p>
+                            <span class="text-muted small">May 19, 2026</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-4">
+                    <div class="footer-brand mb-3">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2" class="me-2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                        AI-Solution
+                    </div>
+                    <p class="footer-tagline small">AI-Solution: Empower enterprise workforces with next-generation AI virtual assistants and prototyping solutions.</p>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <h6 class="footer-heading">Products</h6>
+                    <ul class="footer-links">
+                        <li><a href="products.html#omnimetrics">OmniMetrics AI</a></li>
+                        <li><a href="products.html#nexus">Nexus Assist Pro</a></li>
+                        <li><a href="products.html#logicbuilder">LogicBuilder 3.0</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <h6 class="footer-heading">Company</h6>
+                    <ul class="footer-links">
+                        <li><a href="case-studies.html">Case Studies</a></li>
+                        <li><a href="news.html">News</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h6 class="footer-heading">Contact</h6>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt me-2" style="color:var(--accent-blue);"></i><a href="https://maps.google.com/?q=Innovation+Hub,+Sunderland+SR1+1PB,+UK" target="_blank" class="text-decoration-none" style="color: rgba(255,255,255,0.75) !important;">Innovation Hub, Sunderland SR1 1PB, UK</a></li>
+                        <li><i class="fas fa-envelope me-2" style="color:var(--accent-blue);"></i>hello@ai-solution.co.uk</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="footer-divider">
+            <div class="row align-items-center">
+                <div class="col-md-4 text-center text-md-start text-muted small">&copy; 2024 AI-Solution Ltd. All rights reserved.</div>
+                <div class="col-md-4 text-center text-muted small py-2 py-md-0">
+                    <span class="text-muted">Staff Access:</span>
+                    <a href="admin-login.php" class="text-decoration-none text-muted small ms-1" style="color:var(--accent-blue) !important; font-weight:600;"><i class="fas fa-lock me-1"></i>Portal Login</a>
+                </div>
+                <div class="col-md-4 text-center text-md-end">
+                    <a href="#" class="text-muted text-decoration-none me-3 small">Privacy Policy</a>
+                    <a href="#" class="text-muted text-decoration-none small">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Chatbot -->
+    <div class="floating-chatbot">
+        <div class="chatbot-tooltip">Need help? Chat with AI-Assistant</div>
+        <button class="chatbot-btn" id="chatbotBtn" aria-label="Open Chatbot">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        </button>
+    </div>
+
+    <!-- AI Chatbot Panel -->
+    <div class="chatbot-panel" id="chatbotPanel">
+        <div class="chatbot-header">
+            <div class="chatbot-header-info">
+                <div class="chatbot-status-dot"></div>
+                <span class="fw-bold text-white" style="font-size: 0.95rem;">AI Solutions Assistant</span>
+            </div>
+            <button class="chatbot-close-btn" id="closeChatbot" aria-label="Close Chatbox">&times;</button>
+        </div>
+        <div class="chatbot-history" id="chatbotHistory">
+            <div class="chat-msg bot">Hello! I am your AI assistant. How can I help you today?</div>
+        </div>
+        <div class="chatbot-quick-replies" id="chatbotQuickReplies">
+            <button class="quick-reply-btn" data-reply="How to submit a demo inquiry?">Submit Inquiry</button>
+            <button class="quick-reply-btn" data-reply="What are your pricing plans?">Pricing Plans</button>
+            <button class="quick-reply-btn" data-reply="Where are your office locations?">Offices</button>
+            <button class="quick-reply-btn" data-reply="What case studies do you have?">Case Studies</button>
+        </div>
+        <form class="chatbot-input-form" id="chatbotForm">
+            <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Type a message..." autocomplete="off" required>
+            <button type="submit" class="chatbot-send-btn" aria-label="Send message">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+        </form>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightboxModal" class="lightbox-modal" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightboxImg">
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    
+    <script>
+        function openLightbox(src, caption) {
+            document.getElementById('lightboxModal').style.display = "block";
+            document.getElementById('lightboxImg').src = src;
+            document.getElementById('lightboxCaption').textContent = caption;
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightboxModal').style.display = "none";
+        }
+    </script>
+</body>
+</html>

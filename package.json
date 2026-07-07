@@ -1,0 +1,14 @@
+{
+  "name": "product-development",
+  "version": "1.0.0",
+  "description": "AI-Solution product development website",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.2.0"
+  }
+}
