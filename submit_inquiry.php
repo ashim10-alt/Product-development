@@ -25,8 +25,8 @@ header("X-Content-Type-Options: nosniff");
 header("X-Frame-Options: DENY");
 header("X-XSS-Protection: 1; mode=block");
 
-require_once 'mailer.php';
-require_once 'db_connect.php';
+require_once __DIR__ . '/mailer.php';
+require_once __DIR__ . '/db_connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' && $_SERVER['REQUEST_METHOD'] !== 'OPTIONS') {
     sendResponse('error', 'Invalid request method.', 405);

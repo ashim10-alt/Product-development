@@ -3,7 +3,7 @@
  * setup_database.php
  * 
  * Web-based SQLite database setup wizard.
- * Access via: http://localhost/PRODUCT_DEVELOPEMENT/setup_database.php
+ * Access via: setup_database.php
  */
 
 header('Content-Type: text/html; charset=utf-8');
