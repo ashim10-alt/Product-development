@@ -2,9 +2,15 @@
 /**
  * db_connect.php
  * 
- * Centralized SQLite connection and auto-initialization utility.
- * Connects via PDO and sets up tables & seeds initial data if database is fresh.
+ * Centralized database connection utility.
+ * Uses MySQL when DB env vars are configured, otherwise falls back to local SQLite.
  */
+
+$mysqlHost = getenv('DB_HOST') ?: getenv('MYSQL_HOST');
+$mysqlUser = getenv('DB_USERNAME') ?: getenv('DB_USER') ?: getenv('MYSQL_USER');
+$mysqlPassword = getenv('DB_PASSWORD') ?: getenv('MYSQL_PASSWORD');
+$mysqlDatabase = getenv('DB_DATABASE') ?: getenv('DB_NAME') ?: getenv('MYSQL_DATABASE');
+$mysqlPort = getenv('DB_PORT') ?: getenv('MYSQL_PORT') ?: 3306;
 
 $default_db_file = __DIR__ . '/ai_solution_db.sqlite';
 $temp_db_file = sys_get_temp_dir() . '/ai_solution_db.sqlite';
@@ -16,13 +22,22 @@ if ((!file_exists($default_db_file) || !is_writable(dirname($default_db_file))) 
 }
 
 try {
-    // Establish PDO SQLite Connection
-    $pdo = new PDO('sqlite:' . $db_file);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-    
-    // Enable Foreign Keys
-    $pdo->exec('PRAGMA foreign_keys = ON;');
+    if ($mysqlHost && $mysqlUser && $mysqlDatabase) {
+        $dsn = sprintf('mysql:host=%s;port=%s;dbname=%s;charset=utf8mb4', $mysqlHost, $mysqlPort, $mysqlDatabase);
+        $pdo = new PDO($dsn, $mysqlUser, $mysqlPassword, [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            PDO::ATTR_EMULATE_PREPARES => false,
+        ]);
+    } else {
+        // Establish PDO SQLite Connection
+        $pdo = new PDO('sqlite:' . $db_file);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+        
+        // Enable Foreign Keys
+        $pdo->exec('PRAGMA foreign_keys = ON;');
+    }
     
     // 1. Create admin_users table
     $pdo->exec("CREATE TABLE IF NOT EXISTS `admin_users` (

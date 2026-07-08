@@ -90,6 +90,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
         'httponly' => true,
         'samesite' => 'Lax',
     ]);
+}
 
 // ─── AJAX Action Handlers ─────────────────────────────────────────────────────
 $ajax_action = isset($_POST['ajax_action']) ? $_POST['ajax_action'] : (isset($_GET['ajax_action']) ? $_GET['ajax_action'] : '');
