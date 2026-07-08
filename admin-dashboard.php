@@ -54,6 +54,7 @@ function validateAdminAuthCookie(string $cookieValue) {
 }
 
 session_start();
+require_once __DIR__ . '/db_connect.php';
 
 if ((!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) && !empty($_COOKIE['admin_auth'])) {
     $user = validateAdminAuthCookie($_COOKIE['admin_auth']);
